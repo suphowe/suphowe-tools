@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代码生成工具</title>
+    <script src="../plugins/vue/vue-v2.6.12.js"></script>
+    <!-- 引入样式 -->
+    <script rel="stylesheet" href="assets/sass/black-dashboard.scss"></script>
+    <script src="../plugins/vue/index.js"></script>
+    <script src="../plugins/vue/axios-v0.21.1.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <table>
+        <tr>
+            <td>
+                <el-tag size="mini">数据库用户名：</el-tag>
+            </td>
+            <td>
+                <el-input size="mini" v-model="db.username"></el-input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <el-tag size="mini">数据库密码：</el-tag>
+            </td>
+            <td>
+                <el-input size="mini" v-model="db.password"></el-input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <el-tag size="mini">数据库连接地址：</el-tag>
+            </td>
+            <td>
+                <el-input size="mini" v-model="db.url"></el-input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <el-tag size="mini">文件保存路径：</el-tag>
+            </td>
+            <td>
+                <el-input size="mini" v-model="savePath"></el-input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <el-tag size="mini">文件package格式：</el-tag>
+            </td>
+            <td>
+                <el-input size="mini" v-model="db.packageName"></el-input>
+            </td>
+        </tr>
+    </table>
+    <div style="display: flex">
+        <el-button type="primary" size="mini" @click="connect" :disabled="!connectBtnEnabled">连接数据库</el-button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <el-button type="primary" size="mini" @click="config">配置</el-button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div style="color: #ff0114;font-weight: bold">*{{msg}}*</div>
+    </div>
+    <el-table :data="tableData" stripe border style="width: 100%">
+        <el-table-column prop="tableName" label="表名称" width="180">
+            <template slot-scope="scope">
+                <el-input v-model="scope.row.tableName"></el-input>
+            </template>
+        </el-table-column>
+        <el-table-column label="Controller名称" width="180">
+            <template slot-scope="scope">
+                <el-input v-model="scope.row.controllerName"></el-input>
+            </template>
+        </el-table-column>
+        <el-table-column label="Service名称" width="180">
+            <template slot-scope="scope">
+                <el-input v-model="scope.row.serviceName"></el-input>
+            </template>
+        </el-table-column>
+        <el-table-column label="Mapper名称" width="180">
+            <template slot-scope="scope">
+                <el-input v-model="scope.row.mapperName"></el-input>
+            </template>
+        </el-table-column>
+        <el-table-column label="实体类名称" width="180">
+            <template slot-scope="scope">
+                <el-input v-model="scope.row.modelName"></el-input>
+            </template>
+        </el-table-column>
+    </el-table>
+    <div>
+        <el-button @click="generateCode" type="success">生成代码</el-button>
+        <div style="color: #ff0114;font-weight: bold">*{{result}}*</div>
+        <div>{{codePath}}</div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: "#app",
+        data: function () {
+            //默认值
+            return {
+                tableData: [],
+                result: 'waiting',
+                codePath: '',
+                msg: '数据库未连接',
+                connectBtnEnabled: true,
+                savePath: "c:/suphowe/code",
+                db: {
+                    packageName: 'com.soft',
+                    username: "root",
+                    password: "root",
+                    url: "jdbc:mysql://127.0.0.1:3306/suphowe?useUnicode=true&characterEncoding=UTF-8"
+                }
+            }
+        },
+        methods: {
+            generateCode() {
+                let _this = this;
+                axios.post('/generateCode',
+                    {
+                        tableData: this.tableData,
+                        savePath: this.savePath
+                    })
+                    .then(function (response) {
+                        _this.result = response.data.msg;
+                        _this.codePath = response.data.obj;
+                    })
+                    .catch(function (error) {
+                    });
+            },
+            config() {
+                let _this = this;
+                axios.post('/config',
+                    {
+                        packageName: this.db.packageName
+                    })
+                    .then(function (response) {
+                        _this.msg = response.data.msg;
+                        _this.tableData = response.data.obj;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            connect() {
+                let _this = this;
+                axios.post('/connect', this.db)
+                    .then(function (response) {
+                        _this.msg = response.data.msg;
+                        _this.db = {
+                            username: this.db.username,
+                            password: this.db.password,
+                            url: this.db.url
+                        }
+                        _this.connectBtnEnabled = false;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        }
+    })
+</script>
+</body>
+</html>
