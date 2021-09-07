@@ -51,4 +51,10 @@ public class ProducerProperties {
      */
     @Value("${rocketmq.producer.topic}")
     private String producerTopic;
+
+    /**
+     * tag
+     */
+    @Value("${rocketmq.producer.tag}")
+    private String producerTag;
 }
