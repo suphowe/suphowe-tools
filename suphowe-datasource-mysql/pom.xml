@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.soft.datasource</groupId>
-    <artifactId>suphowe-datasource</artifactId>
+    <artifactId>suphowe-datasource-mysql</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>suphowe-datasource</name>
-    <description>suphowe-datasource</description>
+    <name>suphowe-datasource-mysql</name>
+    <description>suphowe-datasource-mysql</description>
 
     <properties>
     </properties>
