@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>graphicverify</title>
+    <script src="../plugins/jquery/jquery-3.4.1.js"></script>
+</head>
+<body>
+<img src="/captcha" width="130px" height="48px" id="captcha_image" onclick="changeImage()"/>
+<input id="verCode" type="text" min="0" max="300" />
+<button type="button" onclick="verifyCode()">Click Me!</button>
+</body>
+
+<script type="text/javascript">
+
+    function verifyCode() {
+        $.ajax({
+            type: "POST",
+            url: "/verifyCode",
+            dataType: "json",
+            data: {
+                verCode: $("#verCode").val()
+            },
+            async: false,
+            success: function (result) {
+                console.log(result);
+            }
+        });
+    }
+
+    function changeImage() {
+        $.ajax({
+            type: "GET",
+            url: "/captcha",
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                $("#captcha_image").load(location.href+" #captcha_image>*","");
+            }
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,18 @@
+@startuml
+start
+:输入手机号码;
+note right:检查手机号码的正确性
+-[#blue]->
+:发送短信验证码;
+if(手机号码是否正确) then (是)
+    if(手机号码是否已经注册过) then (是)
+        :返回注册过的信息(newUser为false);
+    else (否)
+        :注册用户并返回注册的信息(newUser为true);
+    endif
+else (否)
+    :短信验证码错误;
+end
+endif
+stop
+@enduml
