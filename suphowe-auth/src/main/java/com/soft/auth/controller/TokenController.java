@@ -1,6 +1,7 @@
 package com.soft.auth.controller;
 
 import cn.hutool.json.JSONObject;
+import com.auth0.jwt.JWT;
 import com.soft.auth.beans.User;
 import com.soft.auth.service.UserService;
 import com.soft.auth.service.UserTokenService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -65,10 +67,12 @@ public class TokenController {
     @UserLoginToken
     @GetMapping("/getMessage")
     @ApiOperation(value = "验证token")
-    public String getMessage() {
+    public String getMessage(HttpServletRequest httpServletRequest) {
         // 取出token中带的用户id 进行操作
-        logger.info(TokenUtil.getTokenUserId());
+        logger.info(userService.getTokenUserId(httpServletRequest));
         return "你已通过验证";
     }
+
+
 
 }
