@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BusinessService {
 
-    @Override
     @Async("threadPoolTaskExecutor")
     public void udpHandleMethod(String message) throws Exception {
         log.info("业务开始处理");

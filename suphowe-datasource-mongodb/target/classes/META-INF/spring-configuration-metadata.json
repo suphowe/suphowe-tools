@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "spring.primary.mongodb",
+      "type": "com.soft.mongodb.config.MongoDbConfiguration",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.primary.mongodb.addresses",
+      "type": "java.util.ArrayList<java.lang.String>",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    },
+    {
+      "name": "spring.primary.mongodb.database",
+      "type": "java.lang.String",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    },
+    {
+      "name": "spring.primary.mongodb.password",
+      "type": "java.lang.String",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    },
+    {
+      "name": "spring.primary.mongodb.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    },
+    {
+      "name": "spring.primary.mongodb.properties",
+      "type": "com.soft.mongodb.config.MongoSettingsProperties",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    },
+    {
+      "name": "spring.primary.mongodb.username",
+      "type": "java.lang.String",
+      "sourceType": "com.soft.mongodb.config.MongoDbConfiguration"
+    }
+  ],
+  "hints": []
+}

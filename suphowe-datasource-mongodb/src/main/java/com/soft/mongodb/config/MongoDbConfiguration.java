@@ -76,11 +76,11 @@ public class MongoDbConfiguration {
         // MongoClient mongoClient = new MongoClient(serverAddresses, mongoCredential, mongoClientOptions);
 
         // 创建非认证客户端
-        MongoClient mongoClient = new MongoClient(serverAddresses, mongoClientOptions);
-
-        // 创建MongoDbFactory
-        MongoDbFactory mongoDbFactory = new SimpleMongoClientDbFactory(mongoClient, database);
-        return mongoDbFactory;
+//        MongoClient mongoClient = new MongoClient(serverAddresses, mongoClientOptions);
+//
+//        // 创建MongoDbFactory
+//        MongoDbFactory mongoDbFactory = new SimpleMongoClientDbFactory(mongoClient, database);
+        return null;
     }
 
     /**
