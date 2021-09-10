@@ -1,6 +1,8 @@
 package com.soft.shiro.controller;
 
 import com.soft.shiro.beans.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -20,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Slf4j
+@Api(value = "shiro测试")
 public class LoginController {
 
     @GetMapping("/login")
+    @ApiOperation(value = "登录测试")
     public String login(User user) {
         if (StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassword())) {
             return "请输入用户名和密码！";
@@ -53,23 +57,27 @@ public class LoginController {
 
     @RequiresRoles("admin")
     @GetMapping("/admin")
+    @ApiOperation(value = "测试uri admin")
     public String admin() {
         return "admin success!";
     }
 
     @RequiresPermissions("query")
     @GetMapping("/index")
+    @ApiOperation(value = "测试uri index query")
     public String index() {
         return "index success!";
     }
 
     @RequiresPermissions("add")
     @GetMapping("/add")
+    @ApiOperation(value = "测试uri add")
     public String add() {
         return "add success!";
     }
 
     @GetMapping("/unauthorized")
+    @ApiOperation(value = "测试uri unauthorized")
     public String unauthorized() {
         return "无权限访问!";
     }
