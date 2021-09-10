@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.soft</groupId>
+		<artifactId>suphowe-tools</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.soft.rocketmq</groupId>
+	<artifactId>suphowe-mq-rocketmq</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>suphowe-mq-rocketmq</name>
+	<description>suphowe-mq-rocketmq</description>
+
+	<properties>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>4.9.1</version>
+		</dependency>
+	</dependencies>
+
+</project>
