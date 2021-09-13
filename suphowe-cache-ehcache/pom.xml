@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft</groupId>
+        <artifactId>suphowe-tools</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.soft.ehcache</groupId>
+    <artifactId>suphowe-cache-ehcache</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>suphowe-cache-ehcache</name>
+    <description>suphowe-cache-ehcache</description>
+
+    <properties>
+        <cache.version>2.5.4</cache.version>
+        <ehcache.version>2.10.9.2</ehcache.version>
+    </properties>
+
+    <dependencies>
+        <!-- spring-boot-starter-cache -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>${cache.version}</version>
+        </dependency>
+
+        <!-- ehcache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+
+
+
+    </dependencies>
+
+</project>
