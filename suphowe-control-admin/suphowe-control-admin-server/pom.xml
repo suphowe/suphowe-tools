@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft.control</groupId>
+        <artifactId>suphowe-control-admin</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.soft.control.server</groupId>
+    <artifactId>suphowe-control-admin-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>suphowe-control-admin-server</name>
+    <description>suphowe-control-admin-server</description>
+
+    <properties>
+        <admin.starter.server.version>2.5.1</admin.starter.server.version>
+        <starter.webflux.version>2.5.4</starter.webflux.version>
+        <jolokia.core.version>1.7.0</jolokia.core.version>
+        <starter.actuator.version>2.5.4</starter.actuator.version>
+        <json.simple.version>1.1.1</json.simple.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
+            <version>${admin.starter.server.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>${starter.webflux.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Actuator对外暴露应用的监控信息，Jolokia提供使用HTTP接口获取JSON格式 的数据 -->
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+            <version>${jolokia.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${starter.actuator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>${json.simple.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
