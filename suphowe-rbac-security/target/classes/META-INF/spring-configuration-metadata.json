@@ -1,0 +1,41 @@
+{
+  "groups": [
+    {
+      "name": "custom.config",
+      "type": "com.soft.security.config.CustomConfig",
+      "sourceType": "com.soft.security.config.CustomConfig"
+    },
+    {
+      "name": "jwt.config",
+      "type": "com.soft.security.config.JwtConfig",
+      "sourceType": "com.soft.security.config.JwtConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "custom.config.ignores",
+      "type": "com.soft.security.config.IgnoreConfig",
+      "description": "不需要拦截的地址",
+      "sourceType": "com.soft.security.config.CustomConfig"
+    },
+    {
+      "name": "jwt.config.key",
+      "type": "java.lang.String",
+      "description": "jwt 加密 key，默认值：suphowe.",
+      "sourceType": "com.soft.security.config.JwtConfig"
+    },
+    {
+      "name": "jwt.config.remember",
+      "type": "java.lang.Long",
+      "description": "开启 记住我 之后 jwt 过期时间，默认值 604800000 {@code 7 天}",
+      "sourceType": "com.soft.security.config.JwtConfig"
+    },
+    {
+      "name": "jwt.config.ttl",
+      "type": "java.lang.Long",
+      "description": "jwt 过期时间，默认值：600000 {@code 10 分钟}.",
+      "sourceType": "com.soft.security.config.JwtConfig"
+    }
+  ],
+  "hints": []
+}
