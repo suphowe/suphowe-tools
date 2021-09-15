@@ -62,3 +62,7 @@ suphowe-ratelimit/suphowe-ratelimit-guava/target/
 suphowe-ratelimit/suphowe-ratelimit-redis/target/
 
 suphowe-netty-client/target/
+
+suphowe-datasource/suphowe-datasource-mongodb/target/
+
+suphowe-datasource/suphowe-datasource-mysql/target/

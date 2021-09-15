@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft</groupId>
+        <artifactId>suphowe-tools</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.soft.datasource</groupId>
+    <artifactId>suphowe-datasource</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>suphowe-datasource</name>
+    <description>suphowe-datasource</description>
+
+    <modules>
+        <!-- mysql数据库多数据源配置 -->
+        <module>suphowe-datasource-mysql</module>
+        <!-- mongodb数据库多数据源配置 -->
+        <module>suphowe-datasource-mongodb</module>
+    </modules>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+</project>

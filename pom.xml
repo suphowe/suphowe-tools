@@ -40,10 +40,6 @@
         <module>suphowe-mq-rocketmq</module>
         <!-- 缓存 -->
         <module>suphowe-cache</module>
-        <!-- mysql数据库多数据源配置 -->
-        <module>suphowe-datasource-mysql</module>
-        <!-- mongodb数据库多数据源配置 -->
-        <module>suphowe-datasource-mongodb</module>
         <!-- shiro 权限控制 -->
         <module>suphowe-rbac-shiro</module>
         <!-- security 权限控制 -->
