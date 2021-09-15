@@ -1,12 +1,10 @@
 package com.soft.token.controller;
 
 import cn.hutool.json.JSONObject;
-import com.auth0.jwt.JWT;
-import com.soft.auth.beans.User;
-import com.soft.auth.service.UserService;
-import com.soft.auth.service.UserTokenService;
-import com.soft.auth.system.UserLoginToken;
-import com.soft.auth.utils.TokenUtil;
+import com.soft.token.beans.User;
+import com.soft.token.service.UserService;
+import com.soft.token.service.UserTokenService;
+import com.soft.token.system.UserLoginToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;

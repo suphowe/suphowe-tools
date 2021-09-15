@@ -1,10 +1,7 @@
 package com.soft.token.utils;
 
 import cn.hutool.core.util.StrUtil;
-import com.auth0.jwt.JWT;
-import com.soft.auth.constant.Constants;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import com.soft.token.constant.Constants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;

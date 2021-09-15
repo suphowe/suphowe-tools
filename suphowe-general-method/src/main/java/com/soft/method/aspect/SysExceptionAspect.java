@@ -7,11 +7,11 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,8 +24,8 @@ public class SysExceptionAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(SysExceptionAspect.class);
 
-    @Autowired
-    private ExceptionHandle exceptionHandle;
+    @Resource
+    private ExceptionHandle ExceptionHandle;
 
     @Pointcut("execution(public * com.soft.method.controller.*.*(..))")
     public void log(){
@@ -55,7 +55,7 @@ public class SysExceptionAspect {
         try {
 
         } catch (Exception e) {
-            return exceptionHandle.exceptionGet(e);
+            return ExceptionHandle.exceptionGet(e);
         }
         if(result == null){
             return proceedingJoinPoint.proceed();

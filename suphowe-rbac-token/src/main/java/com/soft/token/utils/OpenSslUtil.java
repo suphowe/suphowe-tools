@@ -1,6 +1,6 @@
 package com.soft.token.utils;
 
-import com.soft.auth.beans.SecretKey;
+import com.soft.token.beans.SecretKey;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.thymeleaf.util.StringUtils;

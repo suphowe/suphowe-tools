@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,7 +59,7 @@ public class HttpRestfulRequest {
             HttpPost httpPost = new HttpPost(url);
             // 建立多文件实例
             MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
-            multipartEntity.setCharset(Charset.forName("utf-8"));
+            multipartEntity.setCharset(StandardCharsets.UTF_8);
             multipartEntity.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
             File postFile = new File(filePathAndName);
@@ -67,7 +68,7 @@ public class HttpRestfulRequest {
             multipartEntity.addPart(postFile.getName(), filebody);
             for (String key : requestParams.keySet()) {
                 String value = (String) requestParams.get(key);
-                multipartEntity.addPart(key, new StringBody(value, ContentType.create("text/plain", Charset.forName("utf-8"))));
+                multipartEntity.addPart(key, new StringBody(value, ContentType.create("text/plain", StandardCharsets.UTF_8)));
             }
             // 设置实体
             HttpEntity reqEntity =  multipartEntity.build();
@@ -109,9 +110,7 @@ public class HttpRestfulRequest {
             /* HttpPost */
             HttpPost httpPost = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<>();
-            Iterator<Entry<String, Object>> it = requestParams.entrySet().iterator();
-            while (it.hasNext()) {
-                Entry<String, Object> en = it.next();
+            for (Entry<String, Object> en : requestParams.entrySet()) {
                 String key = en.getKey();
                 String value = (String) en.getValue();
                 if (value != null) {

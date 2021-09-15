@@ -15,23 +15,75 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
-    suphowe-netty-client
-    suphowe-netty-server
+
     <description>suphowe-tools</description>
     <modules>
         <!-- netty 服务端 -->
         <module>suphowe-netty-server</module>
         <!-- netty 客户端 -->
         <module>suphowe-netty-client</module>
+        <!-- 定时任务 -->
+        <module>suphowe-task</module>
         <!-- quartz 定时任务 -->
-        <module>suphowe-quartz</module>
-    </modules>
+        <module>suphowe-task-quartz</module>
+        <!-- xxl-job 分布式定时任务 -->
+        <module>suphowe-task-xxl-job</module>
+        <!-- 通用方法库 -->
+        <module>suphowe-general-method</module>
+        <!-- token验证 -->
+        <module>suphowe-rbac-token</module>
+        <!-- 自动生成代码 -->
+        <module>suphowe-code-autocreate</module>
+        <!-- rabbitmq 集成 -->
+        <module>suphowe-mq-rabbitmq</module>
+        <!-- rocketmq 集成 -->
+        <module>suphowe-mq-rocketmq</module>
+        <!-- redis -->
+        <module>suphowe-cache-redis</module>
+        <!-- mysql数据库多数据源配置 -->
+        <module>suphowe-datasource-mysql</module>
+        <!-- mongodb数据库多数据源配置 -->
+        <module>suphowe-datasource-mongodb</module>
+        <!-- shiro 权限控制 -->
+        <module>suphowe-rbac-shiro</module>
+        <!-- security 权限控制 -->
+        <module>suphowe-rbac-security</module>
+        <!-- ehcache 缓存控制 -->
+        <module>suphowe-cache-ehcache</module>
+        <!-- Admin 管控台 -->
+        <module>suphowe-control-admin</module>
+        <!-- ureport2 报表实现 -->
+        <module>suphowe-report-ureport2</module>
+        <!-- activiti  -->
+        <module>suphowe-activiti</module>
+        <!-- actuator springboot 状态监控 -->
+        <module>suphowe-actuator</module>
+        <!-- 邮件操作 -->
+        <module>suphowe-email</module>
 
+
+
+
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <context.support.version>5.3.9</context.support.version>
+        <hutool.version>5.7.9</hutool.version>
+        <commons.io.version>2.4</commons.io.version>
+        <commons.codec.version>1.10</commons.codec.version>
+        <commons.lang3.version>3.12.0</commons.lang3.version>
+        <lombok.version>1.18.20</lombok.version>
+        <springfox.starter.version>3.0.0</springfox.starter.version>
+        <springfox.swagger.version>3.0.0</springfox.swagger.version>
+        <swagger.bootstrap.version>1.9.6</swagger.bootstrap.version>
+        <guava.version>30.1-jre</guava.version>
+        <quartz.version>2.3.2</quartz.version>
+        <quartz.jobs.version>2.3.2</quartz.jobs.version>
+        <google.gson.version>2.8.6</google.gson.version>
+        <alibaba.fastjson.version>1.2.78</alibaba.fastjson.version>
     </properties>
 
     <dependencies>
@@ -63,58 +115,50 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>5.3.9</version>
-        </dependency>
-
-        <!-- 数据库配置 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.25</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-        <!-- mybatis -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.0</version>
+            <version>${context.support.version}</version>
         </dependency>
 
         <!-- gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.6</version>
+            <version>${google.gson.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.7.9</version>
+            <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba.fastjson.version}</version>
         </dependency>
 
         <!-- commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${commons.io.version}</version>
         </dependency>
 
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
+            <version>${commons.codec.version}</version>
+        </dependency>
+        <!-- commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
         </dependency>
 
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -122,24 +166,36 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <version>${springfox.starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>3.0.0</version>
+            <version>${springfox.swagger.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.6</version>
+            <version>${swagger.bootstrap.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.1-jre</version>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- quartz -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>${quartz.jobs.version}</version>
         </dependency>
     </dependencies>
 

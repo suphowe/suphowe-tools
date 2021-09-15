@@ -1,6 +1,7 @@
 package com.soft.token.service;
 
 import com.auth0.jwt.JWT;
+import com.soft.token.beans.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

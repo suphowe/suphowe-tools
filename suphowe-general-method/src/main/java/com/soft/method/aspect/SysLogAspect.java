@@ -19,7 +19,7 @@ public class SysLogAspect {
     /**
      * 声明切点
      */
-    @Pointcut("execution(* com.soft.service.*.*(..))")
+    @Pointcut("execution(* com.soft.method.*.*(..))")
     public void point(){}
 
     /**

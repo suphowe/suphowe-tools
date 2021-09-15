@@ -26,11 +26,6 @@
             <version>2.5.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-
         <!-- EXCEL操作 poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -166,11 +161,32 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- 模板文件 -->
+        <!-- freemarker -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+        <!-- thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+        <!-- beetl -->
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl-framework-starter</artifactId>
+            <version>1.2.38.RELEASE</version>
+        </dependency>
+        <!-- enjoy -->
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>enjoy</artifactId>
+            <version>4.9.16</version>
+        </dependency>
+
     </dependencies>
-
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-
 </project>

@@ -21,7 +21,6 @@ public class AopController {
     @Autowired
     private AopService aopService;
 
-    @ResponseBody
     @RequestMapping(value = "/methodOne", method = RequestMethod.POST)
     @ApiOperation(value = "方法1")
     public String methodOne(String msg){

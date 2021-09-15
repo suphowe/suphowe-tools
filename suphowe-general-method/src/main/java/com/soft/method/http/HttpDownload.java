@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -26,6 +27,39 @@ public class HttpDownload {
 
     @Autowired
     private final AuthorizationDo authorizationDo = new AuthorizationDo();
+
+    /**
+     * 链接url下载图片
+     * @param urlList 下载链接
+     */
+    public static void downloadPicture(String urlList, String savePath, String saveName) {
+        URL url = null;
+        int imageNumber = 0;
+        try {
+            url = new URL(urlList);
+            DataInputStream dataInputStream = new DataInputStream(url.openStream());
+
+            String imageName =  savePath + saveName;
+
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(imageName));
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+            byte[] buffer = new byte[1024];
+            int length;
+
+            while ((length = dataInputStream.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
+            }
+            byte[] context=output.toByteArray();
+            fileOutputStream.write(output.toByteArray());
+            dataInputStream.close();
+            fileOutputStream.close();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 从网络Url中下载文件
@@ -44,7 +78,7 @@ public class HttpDownload {
             //防止屏蔽程序抓取而返回403错误
             conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
             //如有安全令牌，添加安全令牌
-            if (token.length() > 0) {
+            if (!token.isEmpty()) {
                 conn.setRequestProperty("lfwywxqyh_token", token);
             }
             //得到输入流
