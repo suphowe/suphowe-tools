@@ -17,5 +17,8 @@ suphowe-tools
 | suphowe-task   | 8081   | 定时任务 |
 | suphowe-task-xxl-job-admin   | 8082   | xxl-job-admin 定时任务调度中心 |
 | suphowe-task-xxl-job-sample   | 8083   | 执行器sample |
+| suphowe-ratelimit-guava   | 8084   | guava api 访问限流 |
+
+
 
 

@@ -60,6 +60,8 @@
         <module>suphowe-actuator</module>
         <!-- 邮件操作 -->
         <module>suphowe-email</module>
+        <!-- guava api 访问限流 -->
+        <module>suphowe-ratelimit-guava</module>
 
 
 

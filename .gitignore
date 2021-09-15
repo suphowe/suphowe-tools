@@ -46,3 +46,5 @@ suphowe-task-xxl-job/suphowe-task-xxl-job-core/target/
 suphowe-task-xxl-job/suphowe-task-xxl-job-sample/target/
 
 .idea/
+
+suphowe-ratelimit-guava/target/
