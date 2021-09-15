@@ -9,24 +9,26 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.soft.control</groupId>
-    <artifactId>suphowe-control-admin</artifactId>
+    <groupId>com.soft.cache</groupId>
+    <artifactId>suphowe-cache</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-    <name>suphowe-control-admin</name>
-    <description>suphowe-control-admin</description>
+    <name>suphowe-cache</name>
+    <description>suphowe-cache</description>
 
     <modules>
-        <module>suphowe-control-admin-server</module>
-        <module>suphowe-control-admin-client</module>
+        <module>suphowe-cache-ehcache</module>
+        <module>suphowe-cache-redis</module>
     </modules>
 
     <properties>
     </properties>
-
     <dependencies>
     </dependencies>
+
+    <build>
+    </build>
 
 </project>

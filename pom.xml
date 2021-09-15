@@ -38,8 +38,8 @@
         <module>suphowe-mq-rabbitmq</module>
         <!-- rocketmq 集成 -->
         <module>suphowe-mq-rocketmq</module>
-        <!-- redis -->
-        <module>suphowe-cache-redis</module>
+        <!-- 缓存 -->
+        <module>suphowe-cache</module>
         <!-- mysql数据库多数据源配置 -->
         <module>suphowe-datasource-mysql</module>
         <!-- mongodb数据库多数据源配置 -->
@@ -48,8 +48,6 @@
         <module>suphowe-rbac-shiro</module>
         <!-- security 权限控制 -->
         <module>suphowe-rbac-security</module>
-        <!-- ehcache 缓存控制 -->
-        <module>suphowe-cache-ehcache</module>
         <!-- Admin 管控台 -->
         <module>suphowe-control-admin</module>
         <!-- ureport2 报表实现 -->
@@ -60,8 +58,8 @@
         <module>suphowe-actuator</module>
         <!-- 邮件操作 -->
         <module>suphowe-email</module>
-        <!-- guava api 访问限流 -->
-        <module>suphowe-ratelimit-guava</module>
+        <!-- api 访问限流 -->
+        <module>suphowe-ratelimit</module>
 
 
 

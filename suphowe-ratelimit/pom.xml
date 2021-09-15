@@ -9,18 +9,17 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.soft.control</groupId>
-    <artifactId>suphowe-control-admin</artifactId>
+    <groupId>com.soft.ratelimit</groupId>
+    <artifactId>suphowe-ratelimit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-    <name>suphowe-control-admin</name>
-    <description>suphowe-control-admin</description>
+    <name>suphowe-ratelimit</name>
+    <description>suphowe-ratelimit</description>
+
 
     <modules>
-        <module>suphowe-control-admin-server</module>
-        <module>suphowe-control-admin-client</module>
     </modules>
 
     <properties>
