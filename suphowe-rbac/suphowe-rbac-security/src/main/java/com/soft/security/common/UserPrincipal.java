@@ -2,7 +2,6 @@ package com.soft.security.common;
 
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.xiaoymin.swaggerbootstrapui.conf.Consts;
 import com.soft.security.defines.Permission;
 import com.soft.security.defines.Role;
 import com.soft.security.defines.User;
