@@ -21,6 +21,7 @@
     <modules>
         <module>suphowe-cache-ehcache</module>
         <module>suphowe-cache-redis</module>
+        <module>suphowe-cache-session</module>
     </modules>
 
     <properties>
