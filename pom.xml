@@ -44,6 +44,8 @@
         <module>suphowe-ratelimit</module>
         <!-- rbac 权限验证 -->
         <module>suphowe-rbac</module>
+        <!-- docker -->
+        <module>suphowe-docker</module>
 
 
 

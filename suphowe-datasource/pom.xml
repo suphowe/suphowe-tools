@@ -23,6 +23,10 @@
         <module>suphowe-datasource-mysql</module>
         <!-- mongodb数据库多数据源配置 -->
         <module>suphowe-datasource-mongodb</module>
+        <!-- sharding-jdbc 分库分表算法 -->
+        <module>suphowe-datasource-sharding-jdbc</module>
+        <!-- 动态添加/删除`数据源 -->
+        <module>suphowe-datasource-dynamic</module>
     </modules>
 
     <properties>

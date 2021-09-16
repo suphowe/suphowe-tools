@@ -20,6 +20,9 @@ suphowe-tools
 | suphowe-ratelimit-guava   | 8084   | guava api 访问限流 |
 | suphowe-ratelimit-redis   | 8085   | redis api 访问限流 |
 | suphowe-cache-session   | 8086   | session |
+| suphowe-datasource-sharding-jdbc   | 8070   | 分库分表数据处理 |
+| suphowe-docker   | 8071   |  |
+| suphowe-datasource-dynamic   | 8072   | 动态添加/删除`数据源 |
 
 
 

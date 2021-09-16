@@ -92,3 +92,7 @@ suphowe-task/suphowe-task-xxl-job/suphowe-task-xxl-job-sample/target/
 suphowe-rbac/suphowe-rbac-security/target/
 
 suphowe-cache/suphowe-cache-session/target/
+
+suphowe-datasource/suphowe-datasource-dynamic/target/
+
+suphowe-datasource/suphowe-datasource-sharding-jdbc/target/
