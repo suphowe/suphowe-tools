@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft</groupId>
+        <artifactId>suphowe-tools</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.soft.rbac</groupId>
+    <artifactId>suphowe-rbac</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>suphowe-rbac</name>
+    <description>suphowe-rbac</description>
+
+    <modules>
+        <!-- shiro 权限控制 -->
+        <module>suphowe-rbac-shiro</module>
+        <!-- security 权限控制 -->
+        <module>suphowe-rbac-security</module>
+        <!-- token验证 -->
+        <module>suphowe-rbac-token</module>
+    </modules>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+</project>

@@ -66,3 +66,25 @@ suphowe-netty-client/target/
 suphowe-datasource/suphowe-datasource-mongodb/target/
 
 suphowe-datasource/suphowe-datasource-mysql/target/
+
+suphowe-mq/suphowe-mq-rabbitmq/target/
+
+suphowe-mq/suphowe-mq-rocketmq/target/
+
+suphowe-netty/suphowe-netty-client/target/
+
+suphowe-netty/suphowe-netty-server/target/
+
+suphowe-rbac/suphowe-rbac-shiro/target/
+
+suphowe-rbac/suphowe-rbac-token/target/
+
+suphowe-task/suphowe-task-quartz/target/
+
+suphowe-task/suphowe-task-simple/target/
+
+suphowe-task/suphowe-task-xxl-job/suphowe-task-xxl-job-admin/target/
+
+suphowe-task/suphowe-task-xxl-job/suphowe-task-xxl-job-core/target/
+
+suphowe-task/suphowe-task-xxl-job/suphowe-task-xxl-job-sample/target/

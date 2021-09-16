@@ -18,32 +18,18 @@
 
     <description>suphowe-tools</description>
     <modules>
-        <!-- netty 服务端 -->
-        <module>suphowe-netty-server</module>
-        <!-- netty 客户端 -->
-        <module>suphowe-netty-client</module>
+        <!-- netty -->
+        <module>suphowe-netty</module>
         <!-- 定时任务 -->
         <module>suphowe-task</module>
-        <!-- quartz 定时任务 -->
-        <module>suphowe-task-quartz</module>
-        <!-- xxl-job 分布式定时任务 -->
-        <module>suphowe-task-xxl-job</module>
         <!-- 通用方法库 -->
         <module>suphowe-general-method</module>
-        <!-- token验证 -->
-        <module>suphowe-rbac-token</module>
         <!-- 自动生成代码 -->
         <module>suphowe-code-autocreate</module>
-        <!-- rabbitmq 集成 -->
-        <module>suphowe-mq-rabbitmq</module>
-        <!-- rocketmq 集成 -->
-        <module>suphowe-mq-rocketmq</module>
+        <!-- mq 集成 -->
+        <module>suphowe-mq</module>
         <!-- 缓存 -->
         <module>suphowe-cache</module>
-        <!-- shiro 权限控制 -->
-        <module>suphowe-rbac-shiro</module>
-        <!-- security 权限控制 -->
-        <module>suphowe-rbac-security</module>
         <!-- Admin 管控台 -->
         <module>suphowe-control-admin</module>
         <!-- ureport2 报表实现 -->
@@ -56,6 +42,8 @@
         <module>suphowe-email</module>
         <!-- api 访问限流 -->
         <module>suphowe-ratelimit</module>
+        <!-- rbac 权限验证 -->
+        <module>suphowe-rbac</module>
 
 
 

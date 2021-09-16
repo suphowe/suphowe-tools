@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.soft</groupId>
-		<artifactId>suphowe-tools</artifactId>
+		<groupId>com.soft.cache</groupId>
+		<artifactId>suphowe-cache</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 

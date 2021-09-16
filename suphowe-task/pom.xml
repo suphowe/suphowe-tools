@@ -12,8 +12,20 @@
     <groupId>com.soft.task</groupId>
     <artifactId>suphowe-task</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
     <name>suphowe-task</name>
     <description>suphowe-task</description>
+
+    <modules>
+        <!-- quartz 简单配置 -->
+        <module>suphowe-task-simple</module>
+        <!-- quartz 定时任务 -->
+        <module>suphowe-task-quartz</module>
+        <!-- xxl-job 分布式定时任务 -->
+        <module>suphowe-task-xxl-job</module>
+    </modules>
 
     <properties>
     </properties>
