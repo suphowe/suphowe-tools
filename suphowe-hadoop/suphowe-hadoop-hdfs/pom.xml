@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft.hadoop</groupId>
+        <artifactId>suphowe-hadoop</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.hadoop.hdfs</groupId>
+    <artifactId>suphowe-hadoop-hdfs</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>suphowe-hadoop-hdfs</name>
+    <description>suphowe-hadoop-hdfs</description>
+
+    <properties>
+        <hadoop-common.version>3.3.1</hadoop-common.version>
+        <hadoop-hdfs.version>3.3.1</hadoop-hdfs.version>
+        <hadoop-client.version>3.3.1</hadoop-client.version>
+        <hadoop-mapreduce-client-core.version>3.3.1</hadoop-mapreduce-client-core.version>
+    </properties>
+
+    <dependencies>
+        <!-- hadoop-common -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop-common.version}</version>
+        </dependency>
+        <!-- hadoop-hdfs -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>${hadoop-hdfs.version}</version>
+        </dependency>
+        <!-- hadoop-client -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop-mapreduce-client-core.version}</version>
+        </dependency>
+        <!-- 中文分词器 -->
+        <dependency>
+            <groupId>cn.bestwu</groupId>
+            <artifactId>ik-analyzers</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+        <!-- tools 需要将systemPath中的路径修改为环境变量路径 -->
+        <dependency>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+            <version>1.8</version>
+            <scope>system</scope>
+            <systemPath>C:/Java/jdk1.8.0_202/lib/tools.jar</systemPath>
+        </dependency>
+
+    </dependencies>
+
+</project>

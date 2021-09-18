@@ -23,6 +23,7 @@ suphowe-tools
 | suphowe-datasource-sharding-jdbc   | 8070   | 分库分表数据处理 |
 | suphowe-docker   | 8071   |  |
 | suphowe-datasource-dynamic   | 8072   | 动态添加/删除`数据源 |
+| suphowe-hadoop-hdfs   | 8073   | hadoop hdfs集成 |
 
 
 

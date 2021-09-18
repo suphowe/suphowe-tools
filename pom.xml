@@ -46,6 +46,8 @@
         <module>suphowe-rbac</module>
         <!-- docker -->
         <module>suphowe-docker</module>
+        <!-- hadoop -->
+        <module>suphowe-hadoop</module>
 
 
 
