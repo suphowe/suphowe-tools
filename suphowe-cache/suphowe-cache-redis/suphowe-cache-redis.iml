@@ -32,7 +32,6 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:2.5.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.5.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.9" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.3.9" level="project" />
     <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:6.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.66.Final" level="project" />
@@ -147,5 +146,8 @@
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.15" level="project" />
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz-jobs:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish:javax.el:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.10" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.9" level="project" />
   </component>
 </module>

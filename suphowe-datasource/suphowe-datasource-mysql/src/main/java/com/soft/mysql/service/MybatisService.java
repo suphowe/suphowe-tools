@@ -1,7 +1,7 @@
 package com.soft.mysql.service;
 
-import com.soft.mysql.dao.cafmvs.TsUserMapper;
-import com.soft.mysql.dao.local.UserMapper;
+import com.soft.mysql.dao.TsUserMapper;
+import com.soft.mysql.dao.UserMapper;
 import com.soft.mysql.entity.TsUser;
 import com.soft.mysql.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

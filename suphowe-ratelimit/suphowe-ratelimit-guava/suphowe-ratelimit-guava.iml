@@ -130,5 +130,8 @@
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.mchange:mchange-commons-java:0.2.15" level="project" />
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz-jobs:2.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish:javax.el:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.10" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.9" level="project" />
   </component>
 </module>

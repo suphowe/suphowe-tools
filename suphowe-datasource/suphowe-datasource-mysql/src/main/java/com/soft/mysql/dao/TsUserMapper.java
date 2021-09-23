@@ -1,4 +1,4 @@
-package com.soft.mysql.dao.cafmvs;
+package com.soft.mysql.dao;
 
 import com.soft.mysql.entity.TsUser;
 import com.soft.mysql.entity.User;

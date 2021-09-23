@@ -1,4 +1,4 @@
-package com.soft.mysql.dao.local;
+package com.soft.mysql.dao;
 
 import com.soft.mysql.entity.User;
 import org.apache.ibatis.annotations.Mapper;

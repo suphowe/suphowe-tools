@@ -96,3 +96,17 @@ suphowe-cache/suphowe-cache-session/target/
 suphowe-datasource/suphowe-datasource-dynamic/target/
 
 suphowe-datasource/suphowe-datasource-sharding-jdbc/target/
+
+suphowe-docker/target/
+
+suphowe-hadoop/suphowe-hadoop-hbase/target/
+
+suphowe-hadoop/suphowe-hadoop-hdfs/target/
+
+suphowe-hadoop/suphowe-hadoop-hive/target/
+
+suphowe-hadoop/suphowe-hadoop-mahout/target/
+
+suphowe-hadoop/suphowe-hadoop-mapreduce/target/
+
+suphowe-hadoop/suphowe-hadoop-sqoop/target/
