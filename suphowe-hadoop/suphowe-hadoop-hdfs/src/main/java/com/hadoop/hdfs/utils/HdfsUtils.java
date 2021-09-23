@@ -1,5 +1,6 @@
 package com.hadoop.hdfs.utils;
 
+import com.hadoop.hdfs.config.HdfsConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
@@ -22,16 +23,12 @@ import java.util.Map;
 @Service
 public class HdfsUtils {
 
-    private static String hdfsPath;
-    private static String hdfsName;
-    private static final int bufferSize = 1024 * 1024 * 64;
-
     /**
      * 获取HDFS配置信息
      */
     private static Configuration getConfiguration() {
         Configuration configuration = new Configuration();
-        configuration.set("fs.defaultFS", hdfsPath);
+        configuration.set("fs.defaultFS", HdfsConstants.HDFS_PATH);
         return configuration;
     }
 
@@ -42,7 +39,7 @@ public class HdfsUtils {
         // 客户端去操作hdfs时是有一个用户身份的，默认情况下hdfs客户端api会从jvm中获取一个参数作为自己的用户身份
         // DHADOOP_USER_NAME=hadoop
         // 也可以在构造客户端fs对象时，通过参数传递进去
-        FileSystem fileSystem = FileSystem.get(new URI(hdfsPath), getConfiguration(), hdfsName);
+        FileSystem fileSystem = FileSystem.get(new URI(HdfsConstants.HDFS_PATH), getConfiguration(), HdfsConstants.HDFS_NAME);
         return fileSystem;
     }
 
@@ -272,7 +269,7 @@ public class HdfsUtils {
         try {
             inputStream = fs.open(oldPath);
             outputStream = fs.create(newPath);
-            IOUtils.copyBytes(inputStream, outputStream, bufferSize, false);
+            IOUtils.copyBytes(inputStream, outputStream, HdfsConstants.HDFS_BUFFER_SIZE, false);
         } finally {
             inputStream.close();
             outputStream.close();

@@ -12,7 +12,6 @@ import java.util.List;
  * @author suphowe
  */
 @Mapper
-@Component
 public interface TsUserMapper {
 
     /**

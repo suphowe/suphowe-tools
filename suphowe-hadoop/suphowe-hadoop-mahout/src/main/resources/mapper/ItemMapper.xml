@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.hadoop.mahout.dao.ItemMapper">
+
+    <select id="findAllByIds" resultType="com.hadoop.mahout.entity.Item">
+        select * from tb_item
+        WHERE pid in
+        <foreach collection="Ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

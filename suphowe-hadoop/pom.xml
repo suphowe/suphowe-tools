@@ -23,6 +23,14 @@
         <module>suphowe-hadoop-hdfs</module>
         <!-- hive 数据源 -->
         <module>suphowe-hadoop-hive</module>
+        <!-- mapreduce 统计操作 -->
+        <module>suphowe-hadoop-mapreduce</module>
+        <!-- hbase NoSql 数据源 -->
+        <module>suphowe-hadoop-hbase</module>
+        <!-- hbase sqoop 数据传输 -->
+        <module>suphowe-hadoop-sqoop</module>
+        <!-- mahout 数据挖掘算法库 -->
+        <module>suphowe-hadoop-mahout</module>
     </modules>
 
     <properties>

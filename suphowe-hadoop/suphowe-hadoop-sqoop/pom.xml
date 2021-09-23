@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft.hadoop</groupId>
+        <artifactId>suphowe-hadoop</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.hadoop.sqoop</groupId>
+    <artifactId>suphowe-hadoop-sqoop</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>suphowe-hadoop-sqoop</name>
+    <description>suphowe-hadoop-sqoop</description>
+
+    <properties>
+        <hadoop-common.version>3.3.1</hadoop-common.version>
+        <hadoop-hdfs.version>3.3.1</hadoop-hdfs.version>
+        <hadoop-client.version>3.3.1</hadoop-client.version>
+        <hadoop-mapreduce-client-core.version>3.3.1</hadoop-mapreduce-client-core.version>
+        <hadoop-mapreduce-client-common.version>3.3.1</hadoop-mapreduce-client-common.version>
+        <hadoop-mapreduce-client-jobclient.version>3.3.1</hadoop-mapreduce-client-jobclient.version>
+    </properties>
+
+    <dependencies>
+        <!-- 数据库配置 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.25</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <!-- sqoop -->
+        <dependency>
+            <groupId>org.apache.sqoop</groupId>
+            <artifactId>sqoop</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
+        <!-- hadoop-common -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop-common.version}</version>
+            <exclusions>
+                <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId></exclusion>
+                <exclusion> <groupId>log4j</groupId> <artifactId>log4j</artifactId> </exclusion>
+                <exclusion> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- hadoop-hdfs -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>${hadoop-hdfs.version}</version>
+        </dependency>
+        <!-- hadoop-client -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop-client.version}</version>
+            <exclusions>
+                <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId></exclusion>
+                <exclusion> <groupId>log4j</groupId> <artifactId>log4j</artifactId> </exclusion>
+                <exclusion> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- hadoop-mapreduce-client-core -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop-mapreduce-client-core.version}</version>
+        </dependency>
+        <!-- hadoop-mapreduce-client-common -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-common</artifactId>
+            <version>${hadoop-mapreduce-client-common.version}</version>
+        </dependency>
+        <!-- hadoop-mapreduce-client-jobclient -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+            <version>${hadoop-mapreduce-client-jobclient.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- avro-mapred -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-mapred</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+        <!-- hive-common -->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-common</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <!-- avro -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft.hadoop</groupId>
+        <artifactId>suphowe-hadoop</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.hadoop.hbase</groupId>
+    <artifactId>suphowe-hadoop-hbase</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>suphowe-hadoop-hbase</name>
+    <description>suphowe-hadoop-hbase</description>
+
+    <properties>
+        <hbase-client.version>2.4.6</hbase-client.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase-client.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
