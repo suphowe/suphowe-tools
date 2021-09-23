@@ -48,6 +48,8 @@
         <module>suphowe-docker</module>
         <!-- hadoop -->
         <module>suphowe-hadoop</module>
+        <!-- log 日志处理 -->
+        <module>suphowe-log</module>
 
 
 
