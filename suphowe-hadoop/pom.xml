@@ -31,6 +31,10 @@
         <module>suphowe-hadoop-sqoop</module>
         <!-- mahout 数据挖掘算法库 -->
         <module>suphowe-hadoop-mahout</module>
+        <!-- storm 分布式的实时的流式计算框架 -->
+        <module>suphowe-hadoop-storm</module>
+        <!-- spark 集成 -->
+        <module>suphowe-hadoop-spark</module>
     </modules>
 
     <properties>

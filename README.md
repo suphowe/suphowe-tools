@@ -27,6 +27,7 @@ suphowe-tools
 | suphowe-hadoop-hive   | 8074   | hadoop hive数据源集成 |
 | suphowe-hadoop-hbase   | 8075   | hadoop hbase数据源集成 |
 | suphowe-hadoop-mahout   | 8076   | hadoop mahout 数据挖掘算法库 |
+| suphowe-hadoop-spark   | 8077   | hadoop spark 数据处理 |
 
 
 
