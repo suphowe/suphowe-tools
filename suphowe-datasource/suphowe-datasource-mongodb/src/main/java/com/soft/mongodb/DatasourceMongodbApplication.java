@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
  * 去除mongodb的自动配置
  * @author suphowe
  */
-@SpringBootApplication(exclude={MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
+@SpringBootApplication
 public class DatasourceMongodbApplication {
 
     public static void main(String[] args) {
