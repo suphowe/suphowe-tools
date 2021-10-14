@@ -1,5 +1,6 @@
 package com.soft.rocketmq.consumer.config;
 
+import com.soft.rocketmq.constant.Constants;
 import com.soft.rocketmq.consumer.defines.ConsumerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
@@ -26,15 +27,12 @@ public class Consumer {
      */
     private final DefaultMQPushConsumer consumer;
 
-    @Autowired
-    private ConsumerProperties consumerProperties;
-
     /**
      * 通过构造函数 实例化对象
      */
     public Consumer() throws MQClientException {
-        consumer = new DefaultMQPushConsumer(consumerProperties.getConsumerGroupName());
-        consumer.setNamesrvAddr(consumerProperties.getConsumerNameServers());
+        consumer = new DefaultMQPushConsumer(Constants.CONSUMER_GROUPNAME);
+        consumer.setNamesrvAddr(Constants.CONSUMER_NAMESERVERS);
         /*
          * 消费模式:
          * CONSUME_FROM_LAST_OFFSET：第一次启动从队列最后位置消费，后续再启动接着上次消费的进度开始消费
@@ -43,7 +41,7 @@ public class Consumer {
          */
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
         //订阅主题和 标签（ * 代表所有标签)下信息
-        consumer.subscribe(consumerProperties.getConsumerTopic(), "*");
+        consumer.subscribe(Constants.CONSUMER_TOPIC, "*");
         // //注册消费的监听 并在此监听中消费信息，并返回消费的状态信息
         consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
             // msgs中只收集同一个topic，同一个tag，并且key相同的message

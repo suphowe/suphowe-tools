@@ -6,6 +6,7 @@ import com.soft.rocketmq.producer.config.Producer;
 import com.soft.rocketmq.producer.defines.ProducerProperties;
 import com.soft.rocketmq.utils.HttpResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
@@ -35,6 +36,7 @@ public class ProducerController {
     ProducerProperties producerProperties;
 
     @GetMapping("/sendDirectMessage")
+    @ApiOperation(value = "消息发送")
     public String sendDirectMessage(String messageData) throws Exception {
         Snowflake snowflake = new Snowflake(2, 3);
         String messageId = String.valueOf(snowflake.nextId());

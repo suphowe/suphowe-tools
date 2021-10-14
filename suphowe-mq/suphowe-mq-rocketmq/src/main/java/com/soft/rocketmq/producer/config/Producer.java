@@ -1,5 +1,6 @@
 package com.soft.rocketmq.producer.config;
 
+import com.soft.rocketmq.constant.Constants;
 import com.soft.rocketmq.producer.defines.ProducerProperties;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -15,16 +16,13 @@ public class Producer {
 
     private DefaultMQProducer defaultMQProducer;
 
-    @Autowired
-    private ProducerProperties producerProperties;
-
     public Producer(){
         //示例生产者
-        defaultMQProducer = new DefaultMQProducer(producerProperties.getProducerGroupName());
+        defaultMQProducer = new DefaultMQProducer(Constants.PRODUCER_GROUPNAME);
         //不开启vip通道 开通口端口会减2
         defaultMQProducer.setVipChannelEnabled(false);
         //绑定name server
-        defaultMQProducer.setNamesrvAddr(producerProperties.getProducerNameServers());
+        defaultMQProducer.setNamesrvAddr(Constants.PRODUCER_NAMESERVERS);
         start();
     }
 

@@ -1,5 +1,30 @@
 # rocketmq
 
+## windows环境下启动rocketmq、broker
+```
+# bin目录下
+# 启动namesrv
+start mqnamesrv.cmd
+# 启动broker
+start mqbroker.cmd -n 127.0.0.1:9876 autoCreateTopicEnable=true
+
+# broker启动失败处理
+删除用户文件夹下的store文件夹
+```
+rocketmq 启动成功
+![1.png](../resources/image/20200118101243258.png)
+broker启动成功
+![1.png](../resources/image/20200118101401666.png)
+
+## rocketmq控制台rocketmq-console
+```
+1.修改 rocketmq-console/src/main/resources/application.properties 中配置的端口
+2.打包rocketmq-console工程：mvn clean package -Dmaven.test.skip=true
+3.启动管理控制台：java -jar rocketmq-console-ng-1.0.1.jar
+```
+控制台启动成功
+![1.png](../resources/image/20200118181819479.png)
+
 ### producer 
 负责发送消息  
 ### consumer 
