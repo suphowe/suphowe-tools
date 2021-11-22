@@ -110,3 +110,5 @@ suphowe-hadoop/suphowe-hadoop-mahout/target/
 suphowe-hadoop/suphowe-hadoop-mapreduce/target/
 
 suphowe-hadoop/suphowe-hadoop-sqoop/target/
+
+suphowe-log/suphowe-log-flume/target/

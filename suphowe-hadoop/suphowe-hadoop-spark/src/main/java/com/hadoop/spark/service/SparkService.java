@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+
 @Service
 public class SparkService {
 
@@ -130,7 +131,8 @@ public class SparkService {
      * spark streaming 练习
      */
     public void sparkStreaming() throws InterruptedException {
-        JavaStreamingContext jsc = new JavaStreamingContext(sc, Durations.seconds(10));//批间隔时间
+        //批间隔时间
+        JavaStreamingContext jsc = new JavaStreamingContext(sc, Durations.seconds(10));
         JavaReceiverInputDStream<String> lines = jsc.receiverStream(new CustomReceiver(StorageLevel.MEMORY_AND_DISK_2()));
         JavaDStream<Long> count =  lines.count();
         count = count.map(x -> {
