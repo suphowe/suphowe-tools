@@ -34,8 +34,10 @@
         <module>suphowe-control-admin</module>
         <!-- ureport2 报表实现 -->
         <module>suphowe-report-ureport2</module>
-        <!-- activiti  -->
+        <!-- activiti 流程引擎 -->
         <module>suphowe-activiti</module>
+        <!-- camunda 流程引擎  -->
+        <module>suphowe-camunda</module>
         <!-- actuator springboot 状态监控 -->
         <module>suphowe-actuator</module>
         <!-- 邮件操作 -->

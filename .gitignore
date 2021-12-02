@@ -112,3 +112,13 @@ suphowe-hadoop/suphowe-hadoop-mapreduce/target/
 suphowe-hadoop/suphowe-hadoop-sqoop/target/
 
 suphowe-log/suphowe-log-flume/target/
+
+suphowe-camunda/target/
+
+suphowe-hadoop/suphowe-hadoop-spark/target/
+
+suphowe-hadoop/suphowe-hadoop-storm/target/
+
+suphowe-hadoop/suphowe-hadoop-yarn/target/
+
+suphowe-mq/rocketmq-console/target/

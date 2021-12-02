@@ -8,10 +8,11 @@ import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Tuple;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class WorldCountBolt extends BaseBasicBolt {
 
-    private Map<String, Integer> worldcountMap = new ConcurrentHashMap<String, Integer>();
+    private Map<String, Integer> worldcountMap = new ConcurrentHashMap<>();
 
     @Override
     public void prepare(Map stormConf, TopologyContext context) {
