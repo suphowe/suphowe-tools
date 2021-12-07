@@ -122,3 +122,5 @@ suphowe-hadoop/suphowe-hadoop-storm/target/
 suphowe-hadoop/suphowe-hadoop-yarn/target/
 
 suphowe-mq/rocketmq-console/target/
+
+suphowe-mq/rocketmq-console-ng/target/
