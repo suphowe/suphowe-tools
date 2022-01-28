@@ -1,10 +1,18 @@
 #################### version #################################
-soft.version=v1.0
+soft:
+  version: 1.0
 # ==============启用端口号 server port ============================
-server.port=8091
+server:
+  port: 8091
 ###############################local datasource#########################################
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=suphowe
+spring:
+  data:
+    mongodb:
+      database: dev
+      host: 19.228.12.33
+      port: 27019
+      username: nxin
+      password: 2GBH#WFUUJGkfXGu
 # ===============  log  =============================
-logging.config=classpath:logback-spring.xml
+logging:
+  config: classpath:logback-spring.xml
