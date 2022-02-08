@@ -23,6 +23,6 @@
         <typeAlias alias="ArrayList" type="java.util.ArrayList" />
         <typeAlias alias="LinkedList" type="java.util.LinkedList" />
         <!-- 批量设置别名(可以不配) 作用：就是在mapper.xml文件中直接写类名，也可以不用写全路径名。 -->
-        <package name="com.soft.mysql.entity" />
+        <package name="com.soft.clickhouse.entity" />
     </typeAliases>
 </configuration>

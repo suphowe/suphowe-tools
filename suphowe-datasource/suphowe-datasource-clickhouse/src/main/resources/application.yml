@@ -1,0 +1,22 @@
+# 服务器配置
+# 版本号
+soft:
+  version: 1.0
+server:
+  port: 8078
+# clickhouse 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    click:
+      driverClassName: ru.yandex.clickhouse.ClickHouseDriver
+      url: jdbc:clickhouse://19.228.63.40:8123/default
+      username: default
+      password: fna&xmEq
+      initialSize: 10
+      maxActive: 100
+      minIdle: 10
+      maxWait: 6000
+# logback日志配置
+logging:
+  config=classpath: logback-spring.xml

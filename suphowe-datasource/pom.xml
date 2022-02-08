@@ -19,6 +19,8 @@
     <description>suphowe-datasource</description>
 
     <modules>
+        <!-- clickhouse数据库数据源配置 -->
+        <module>suphowe-datasource-clickhouse</module>
         <!-- mysql数据库多数据源配置 -->
         <module>suphowe-datasource-mysql</module>
         <!-- mongodb数据库多数据源配置 -->

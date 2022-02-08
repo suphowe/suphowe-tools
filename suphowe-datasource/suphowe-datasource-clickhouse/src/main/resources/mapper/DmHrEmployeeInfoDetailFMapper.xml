@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft.clickhouse.dao.DmHrEmployeeInfoDetailfMapper">
+
+    <select id="queryFirst100" resultType="com.soft.clickhouse.entity.DmHrEmployeeInfoDetailf">
+        select year_name,dept_level2_id,dept_level2_name_zh,dept_level3_id,dept_level3_name_zh,
+               dept_level4_id,dept_level4_name_zh,dept_level5_id,dept_level5_name_zh,dept_level6_id,
+               dept_level6_name_zh,employee_id,employee_name_zh,job_type,job_type_descr,employee_class,
+               employee_class_descr,position_number,position_descr,effective_date,action,action_descr,
+               action_reason,action_reason_descr ,datasoure_num_id,w_insert_dt,month_id from dm.dm_hr_employee_info_detail_f limit 100
+    </select>
+</mapper>
