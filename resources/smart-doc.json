@@ -1,0 +1,7 @@
+{
+  "serverUrl": "http://127.0.0.1",//服务器地址
+  "isStrict": false,//是否用严格模式，严格模式强制检查注释
+  "allInOne": true,//所有接口文档合并生成到一个文档
+  "outPath": "src/main/resources/static/doc",//文档的输出路径
+  "projectName": "smart-doc"//指定项目名称，用于显示在文档中
+}
