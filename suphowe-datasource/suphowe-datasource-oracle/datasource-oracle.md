@@ -157,3 +157,66 @@ http://localhost:8079/druid/login.html
 [TESTPAGE](http://localhost:8079/doc.html)
 ![swagger-1](doc/picture/测试页面-1.png)
 ![swagger-2](doc/picture/测试页面-2.png)
+
+## mybatis编写注意事项
+mybatis报错:
+```
+Cause: org.xml.sax.SAXParseException; lineNumber: 6; columnNumber: 105; 元素内容必须由格式正确的字符数据或标记组成
+```
+XML文件格式错误问题, mybatis中大于，小于，大于等于，小于等于的写法  
+### 第一种写法:
+
+| 描述   | 原符号 | 替换符号   |
+|:-----|:----|:-------|
+| 小于   | <   | \&lt;  |
+| 小于等于 | <=  | \&lt;= |
+| 大于   | \>  | \&gt;  |
+| 大于等于 | \>= | \&gt;= |
+| 与    | &   | \&amp; |
+| 单引号  | '   | \&apos; |
+| 双引号  | "   | \&quot; |
+
+### 第二种写法
+```properties
+<![CDATA[ 符号 ]]>
+```
+```properties
+例如 >= 写作为 <![CDATA[ >= ]]>
+```
+## mybatis占位符
+### #{}
+1.#{}占位符用来设置参数，参数的类型可以有3种，基本类型，自定义类型，map基本类型作为参数，参数与占位符中的名称无关
+```html
+<select id="findById" parameterType="int" resultType="cn.soft.Role">
+        select * from t_role where id = #{xxxid}
+</select>
+```
+2.自定义类型作为参数，自定义类中需要为为属性提供get方法，如果没有提供get方法，那么会根据占位符中的名称去反射获取值，如果占位符中的名称和属性不一致，那么报ReflectionException
+
+3.Map作为参数类型，key和占位符中的名称一致即可，如果名称不一致那么将会把null，传递到占位符中
+
+#### 注意事项
+1.不能作为表名  
+2.不能作为列名  
+
+### ${}
+1.占位符是字符串连接符，可以动态获取相关值  
+
+能从 properties 文件中获取值，也可以作为表名，列名等值。
+
+1.${} 占位符参数只能使用自定义类型和 map 类型。
+```html
+<!-- 查询所有 -->
+<select id="findAll" parameterType="map" resultType="cn.soft.Role">
+        select * from ${tableName}
+</select>
+```
+2.作为连接符使用
+```html
+<select id="selectLike" parameterType="map" resultType="Role">
+        select * from t_role where name like '${name}%';
+</select>
+```
+
+
+
