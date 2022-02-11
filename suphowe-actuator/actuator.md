@@ -2,10 +2,8 @@
 Actuator 模块 详解：健康检查，度量，指标收集和监控
 
 ## 访问地址
+[默认访问地址](http://localhost:8080/actuator)  http://localhost:8080/actuator
 ```
-默认访问地址：
-http://localhost:8080/actuator
-
 可通过配置文件中进行修改
 management.endpoints.web.base-path=/monitor
 访问路径变更为：
@@ -30,7 +28,7 @@ http://localhost:8080/monitor/health
 ```
 
 配置文件
-```
+```properties
 #  "*" 代表暴露所有的端点 如果指定多个端点，用","分开
 management.endpoints.web.exposure.include=*
 # 排除端点,规则同上
@@ -135,7 +133,7 @@ management.health.defaults.enabled=false
 在springboot 2.x 中，需要实现HttpTraceRepository
 
 ### TraceConfig.class
-```
+```java
 /**
  * actuator web请求跟踪
  * @author suphowe
@@ -174,7 +172,7 @@ public class TraceConfig {
 
 ## /shutdown 关闭应用程序
 要求management.endpoint.shutdown.enabled设置为true
-```
+```properties
 #禁用密码验证
 management.endpoint.shutdown.sensitive=false
 # 启用shutdown
