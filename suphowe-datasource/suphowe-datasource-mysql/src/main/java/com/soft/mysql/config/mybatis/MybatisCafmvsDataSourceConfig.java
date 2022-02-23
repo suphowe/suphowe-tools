@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * @author suphowe
  */
 @Configuration
-@MapperScan(basePackages ="com.soft.datasource.dao.cafmvs", sqlSessionTemplateRef  = "cafmvsSqlSessionTemplate")
+@MapperScan(basePackages ="com.soft.mysql.dao", sqlSessionTemplateRef  = "cafmvsSqlSessionTemplate")
 public class MybatisCafmvsDataSourceConfig {
 
     /**
