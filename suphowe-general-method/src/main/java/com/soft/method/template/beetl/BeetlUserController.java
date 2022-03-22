@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/beetl")
 @Slf4j
-public class UserController {
+public class BeetlUserController {
     @PostMapping("/login")
     public ModelAndView login(User user, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();

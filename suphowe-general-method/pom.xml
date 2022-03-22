@@ -16,6 +16,13 @@
     <description>suphowe-general-method</description>
 
     <properties>
+        <!-- 数据库 -->
+        <mysql-connector.version>8.0.25</mysql-connector.version>
+        <druid.version>1.2.6</druid.version>
+        <mybatis.version>2.2.0</mybatis.version>
+        <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
+        <jdbc.version>2.5.4</jdbc.version>
+        <pagehelper.version>1.2.13</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -200,7 +207,40 @@
             <artifactId>easy-captcha</artifactId>
             <version>1.6.2</version>
         </dependency>
-
+        <!-- 数据库配置 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
+        </dependency>
+        <!-- JdbcTemplate -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
 
     </dependencies>
 </project>

@@ -4,6 +4,7 @@ import com.soft.method.beans.Result;
 import com.soft.method.exception.ExceptionEnum;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * 返回结果
@@ -30,6 +31,14 @@ public class ResultUtil {
         result.setStatus(200);
         result.setMsg("success");
         result.setData(object);
+        return result;
+    }
+
+    public static Result back(int code, Object data){
+        Result result = new Result();
+        result.setStatus(code);
+        result.setMsg("success");
+        result.setData(data);
         return result;
     }
 

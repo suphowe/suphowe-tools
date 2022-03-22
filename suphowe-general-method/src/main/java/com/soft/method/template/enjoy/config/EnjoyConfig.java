@@ -21,10 +21,11 @@ public class EnjoyConfig {
         jfr.setSourceFactory(new ClassPathSourceFactory());
         // 在使用 ClassPathSourceFactory 时要使用 setBaseTemplatePath
         // 代替 jfr.setPrefix("/view/")
-        JFinalViewResolver.engine.setBaseTemplatePath("/templates/enjoy/");
+//        JFinalViewResolver.engine.setBaseTemplatePath("/templates/enjoy/");
+        JFinalViewResolver.engine.setBaseTemplatePath("/templates/");
 
         jfr.setSessionInView(true);
-        jfr.setSuffix(".html");
+//        jfr.setSuffix(".html");
         jfr.setContentType("text/html;charset=UTF-8");
         jfr.setOrder(0);
         return jfr;

@@ -1,4 +1,4 @@
-package com.soft.method.template.thymeleaf;
+package com.soft.method.template.freemarker;
 
 import com.soft.method.entity.User;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
  * @author suphowe
  */
 @Controller
-@RequestMapping("/thymeleaf_user")
+@RequestMapping("/freemarker_user")
 @Slf4j
-public class UserController {
-    @PostMapping("/thymeleaf_login")
+public class FreemarkerUserController {
+
+    @PostMapping("/freemarker_login")
     public ModelAndView login(User user, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
 
@@ -29,8 +30,8 @@ public class UserController {
         return mv;
     }
 
-    @GetMapping("/thymeleaf_login")
+    @GetMapping("/freemarker_login")
     public ModelAndView login() {
-        return new ModelAndView("thymeleaf/page/login");
+        return new ModelAndView("freemarker/page/login.ftl");
     }
 }

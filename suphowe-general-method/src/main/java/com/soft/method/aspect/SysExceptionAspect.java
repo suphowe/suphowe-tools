@@ -25,7 +25,7 @@ public class SysExceptionAspect {
     private final static Logger logger = LoggerFactory.getLogger(SysExceptionAspect.class);
 
     @Resource
-    private ExceptionHandle ExceptionHandle;
+    private ExceptionHandle exceptionHandle;
 
     @Pointcut("execution(public * com.soft.method.controller.*.*(..))")
     public void log(){
@@ -49,13 +49,16 @@ public class SysExceptionAspect {
         logger.info("args={}",joinPoint.getArgs());
     }
 
+    /**
+     * 切面环绕
+     */
     @Around("log()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Result result = null;
         try {
 
         } catch (Exception e) {
-            return ExceptionHandle.exceptionGet(e);
+            return exceptionHandle.exceptionGet(e);
         }
         if(result == null){
             return proceedingJoinPoint.proceed();
@@ -68,7 +71,7 @@ public class SysExceptionAspect {
      * 打印输出结果
      */
     @AfterReturning(pointcut = "log()",returning = "object")
-    public void doAfterReturing(Object object){
+    public void doAfterReturn(Object object){
         logger.info("response={}",object.toString());
     }
 }

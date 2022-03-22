@@ -56,7 +56,7 @@ public class SysLogAspect {
      * @param result 返回结果
      */
     @AfterReturning(value = "point()", returning = "result")
-    public void afterReturing(JoinPoint joinPoint, Object result) {
+    public void afterReturn(JoinPoint joinPoint, Object result) {
         // 获取RequestAttributes
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         // 从获取RequestAttributes中获取HttpServletRequest的信息
@@ -196,7 +196,7 @@ public class SysLogAspect {
      * @param exceptionMessage 异常信息
      * @param elements         堆栈信息
      */
-    public String stackTraceToString(String exceptionName, String exceptionMessage, StackTraceElement[] elements) {
+    private String stackTraceToString(String exceptionName, String exceptionMessage, StackTraceElement[] elements) {
         StringBuffer stringBuffer = new StringBuffer();
         for (StackTraceElement stet : elements) {
             stringBuffer.append(stet + "\n");

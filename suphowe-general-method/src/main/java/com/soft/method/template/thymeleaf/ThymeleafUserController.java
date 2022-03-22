@@ -1,4 +1,4 @@
-package com.soft.method.template.enjoy.controller;
+package com.soft.method.template.thymeleaf;
 
 import com.soft.method.entity.User;
 import lombok.extern.slf4j.Slf4j;
@@ -15,22 +15,22 @@ import javax.servlet.http.HttpServletRequest;
  * @author suphowe
  */
 @Controller
-@RequestMapping("/enjoy")
+@RequestMapping("/thymeleaf_user")
 @Slf4j
-public class UserController {
-    @PostMapping("/login")
+public class ThymeleafUserController {
+    @PostMapping("/thymeleaf_login")
     public ModelAndView login(User user, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
 
         mv.addObject(user);
-        mv.setViewName("redirect:/enjoy");
+        mv.setViewName("redirect:/");
 
         request.getSession().setAttribute("user", user);
         return mv;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/thymeleaf_login")
     public ModelAndView login() {
-        return new ModelAndView("enjoy/page/login");
+        return new ModelAndView("thymeleaf/page/login.html");
     }
 }

@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @Slf4j
-public class IndexController {
+public class BeetlIndexController {
 
     @GetMapping("/beetl")
     public ModelAndView index(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
 
         User user = (User) request.getSession().getAttribute("user");
-        if (ObjectUtil.isNull(user)) {
+        if (user == null) {
             mv.setViewName("redirect:/beetl/login");
         } else {
             mv.setViewName("beetl/page/index.btl");

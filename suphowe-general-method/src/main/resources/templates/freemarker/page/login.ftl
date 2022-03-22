@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<#include "../common/head.ftl">
+<include src="/freemarker/common/head.ftl"></include>
 <body>
 <div id="app" style="margin: 20px 20%">
 	<form action="/demo/user/login" method="post">

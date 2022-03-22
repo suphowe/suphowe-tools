@@ -1,4 +1,4 @@
-package com.soft.method.template.freemarker;
+package com.soft.method.template.enjoy.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.soft.method.entity.User;
@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @Slf4j
-public class IndexController {
+public class EnjoyIndexController {
 
-    @GetMapping("/freemarker")
+    @GetMapping("/enjoy")
     public ModelAndView index(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
 
         User user = (User) request.getSession().getAttribute("user");
-        if (ObjectUtil.isNull(user)) {
-            mv.setViewName("redirect:/freemarker_user/freemarker_login");
+        if (user == null) {
+            mv.setViewName("redirect:/enjoy/login");
         } else {
-            mv.setViewName("freemarker/page/index");
+            mv.setViewName("enjoy/page/index.html");
             mv.addObject(user);
         }
 
