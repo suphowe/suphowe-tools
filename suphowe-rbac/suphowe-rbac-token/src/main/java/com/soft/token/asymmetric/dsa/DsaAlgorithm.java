@@ -1,4 +1,4 @@
-package com.soft.token.dsa;
+package com.soft.token.asymmetric.dsa;
 
 import com.soft.token.constant.DsaConstant;
 import org.apache.commons.codec.binary.Base64;

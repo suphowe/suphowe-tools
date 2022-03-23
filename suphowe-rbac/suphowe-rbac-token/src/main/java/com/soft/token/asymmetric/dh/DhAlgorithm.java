@@ -1,4 +1,4 @@
-package com.soft.token.dh;
+package com.soft.token.asymmetric.dh;
 
 
 import com.soft.token.constant.DhConstant;

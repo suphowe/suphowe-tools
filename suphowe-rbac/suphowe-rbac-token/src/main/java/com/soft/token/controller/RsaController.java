@@ -1,7 +1,7 @@
 package com.soft.token.controller;
 
 import com.google.gson.Gson;
-import com.soft.token.rsa.RsaAlgorithm;
+import com.soft.token.asymmetric.rsa.RsaAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.binary.Base64;

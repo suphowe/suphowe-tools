@@ -1,4 +1,4 @@
-package com.soft.token.rsa;
+package com.soft.token.asymmetric.rsa;
 
 import com.soft.token.constant.RsaConstant;
 import org.apache.commons.codec.binary.Base64;

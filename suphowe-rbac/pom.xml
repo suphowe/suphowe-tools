@@ -28,9 +28,16 @@
     </modules>
 
     <properties>
+        <jasypt.version>3.0.3</jasypt.version>
     </properties>
 
     <dependencies>
+        <!-- 配置文件加密 -->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -30,5 +30,17 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>2.5.4</version>
         </dependency>
+        <!--bc库-->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.68</version>
+        </dependency>
+        <!--Bouncy Castle库-->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.60</version>
+        </dependency>
     </dependencies>
 </project>

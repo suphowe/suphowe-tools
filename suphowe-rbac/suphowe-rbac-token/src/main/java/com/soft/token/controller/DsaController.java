@@ -1,7 +1,7 @@
 package com.soft.token.controller;
 
 import com.google.gson.Gson;
-import com.soft.token.dsa.DsaAlgorithm;
+import com.soft.token.asymmetric.dsa.DsaAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

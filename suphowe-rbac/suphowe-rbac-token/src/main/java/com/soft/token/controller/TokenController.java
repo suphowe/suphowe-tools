@@ -3,7 +3,7 @@ package com.soft.token.controller;
 import cn.hutool.json.JSONObject;
 import com.soft.token.beans.User;
 import com.soft.token.service.UserService;
-import com.soft.token.service.UserTokenService;
+import com.soft.token.service.TokenService;
 import com.soft.token.system.UserLoginToken;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +35,7 @@ public class TokenController {
     UserService userService;
 
     @Autowired
-    UserTokenService userTokenService;
+    TokenService tokenService;
 
     @GetMapping("/login")
     @ApiOperation(value = "登陆测试")
@@ -49,7 +49,7 @@ public class TokenController {
         if (!userForBase.getPassword().equals(password)) {
             jsonObject.put("message", "登录失败,密码错误");
         } else {
-            String token = userTokenService.getToken(userForBase);
+            String token = tokenService.getToken(userForBase);
             jsonObject.put("token", token);
 
             Cookie cookie = new Cookie("token", token);

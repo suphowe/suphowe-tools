@@ -1,4 +1,4 @@
-package com.soft.token.ecc;
+package com.soft.token.asymmetric.ecc;
 
 import com.soft.token.constant.EccConstant;
 import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;

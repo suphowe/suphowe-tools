@@ -2,10 +2,10 @@ package com.soft.method.security;
 
 /**
  * 认证算法
- *
  * @author suphowe
  */
 public class CalcUtils {
+
     /**
      * response计算过程：
      * 1.  HA1=MD5(A1)=MD5(username:realm:password)

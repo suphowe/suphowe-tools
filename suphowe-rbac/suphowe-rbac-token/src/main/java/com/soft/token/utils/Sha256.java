@@ -13,11 +13,11 @@ public class Sha256 {
      *
      * @param msg 消息
      * @return 加密消息
-     * @throws Exception
+     * @throws Exception 异常
      */
     public String getSha256(String msg) throws Exception {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-        messageDigest.update(msg.getBytes("utf-8"));
+        messageDigest.update(msg.getBytes("UTF-8"));
         return byteToHex(messageDigest.digest());
     }
 

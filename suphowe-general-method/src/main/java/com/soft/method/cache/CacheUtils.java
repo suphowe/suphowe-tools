@@ -2,8 +2,6 @@ package com.soft.method.cache;
 
 import cn.hutool.cache.CacheUtil;
 import cn.hutool.cache.impl.TimedCache;
-import cn.hutool.core.date.DateUnit;
-import cn.hutool.core.thread.ThreadUtil;
 
 /**
  * 缓存
@@ -11,36 +9,49 @@ import cn.hutool.core.thread.ThreadUtil;
  */
 public class CacheUtils {
 
-    public static void main(String[] args) throws Exception {
-        //创建缓存，默认4毫秒过期
-        TimedCache<String, String> timedCache = CacheUtil.newTimedCache(4);
-        //实例化创建
-        //TimedCache<String, String> timedCache = new TimedCache<String, String>(4);
+    public static final TimedCache<String, String> TIMED_CACHE = CacheUtil.newTimedCache(CacheConstant.CACHE_TIMEOUT);
 
-        //1毫秒过期
-        timedCache.put("key1", "value1", 1);
-        timedCache.put("key2", "value2", DateUnit.SECOND.getMillis() * 5000);
-        //默认过期(4毫秒)
-        timedCache.put("key3", "value3");
+    /**
+     * 放入缓存
+     * @param key 缓存键
+     * @param value 缓存值
+     * @param timeout 过期时间
+     */
+    public static void setCache(String key, String value, long timeout) {
+        TIMED_CACHE.put(key, value, timeout);
+    }
 
-        //启动定时任务，每5毫秒秒检查一次过期
-        timedCache.schedulePrune(5);
+    /**
+     * 获取缓存,刷新过期时间(默认缓存时间)
+     * @param key 缓存键
+     * @return 缓存值
+     */
+    public static String getCache(String key) {
+        return TIMED_CACHE.get(key);
+    }
 
-        //等待5毫秒
-        ThreadUtil.sleep(5000);
+    /**
+     * 获取缓存
+     * @param key 缓存键
+     * @param refreshTime 是否刷新缓存超时时间
+     * @return 缓存值
+     */
+    public static String getCache(String key, boolean refreshTime) {
+        return TIMED_CACHE.get(key, refreshTime);
+    }
 
-        //5毫秒后由于value2设置了5毫秒过期，因此只有value2被保留下来
-        String value1 = timedCache.get("key1");//null
-        String value2 = timedCache.get("key2");//value2
+    /**
+     * 开启定时检查过期
+     * @param delay 定时时长(毫秒)
+     */
+    public static void schedulePrune(long delay) {
+        TIMED_CACHE.schedulePrune(delay);
+    }
 
-        //5毫秒后，由于设置了默认过期，key3只被保留4毫秒，因此为null
-        String value3 = timedCache.get("key3");//null
-
-        System.out.println(value1);
-        System.out.println(value2);
-        System.out.println(value3);
-        //取消定时清理
-        timedCache.cancelPruneSchedule();
-
+    /**
+     * 取消定时检查过期
+     */
+    public static void cancelPruneSchedule() {
+        TIMED_CACHE.cancelPruneSchedule();
     }
 }

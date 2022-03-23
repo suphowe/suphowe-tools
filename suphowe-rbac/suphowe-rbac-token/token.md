@@ -5,16 +5,15 @@
 ├── bean                                    //对象  
 │   └── User.java                           //用户  
 ├── service                                 //服务  
-│   ├── ITokenService.java                  //token接口  
-│   ├── IUserService.java                   //用户接口  
-│   └── impl                                //实现类    
-│       ├── TokenServiceImpl.java           //token实现服务类  
-│       └── UserServiceImpl.java            //用户实现服务类  
+│   ├── TokenService.java                   //token生成与验证 
+│   └── UserService.java                    //用户接口  
 ├── util                                    //工具类  
 │   ├── TokenUtil.java                      //token工具类   
 │   └── AuthenticationInterceptor.java      //自定义拦截器(实现拦截还是放通的逻辑)  
 ├── InterceptorConfig.java                  //拦截器  
 ├── PassToken.java                          //跳过验证的注解接口  
+├── asymmetric                              //非对称加密  
+├── symmetric                               //对称加密
 └── UserLoginToken.java                     //需要用户登陆验证注解接口
 
 ───TokenController.java                     //token测试controller

@@ -1,7 +1,7 @@
 package com.soft.token.controller;
 
 import com.google.gson.Gson;
-import com.soft.token.dh.DhAlgorithm;
+import com.soft.token.asymmetric.dh.DhAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
