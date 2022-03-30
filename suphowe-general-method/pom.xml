@@ -241,6 +241,11 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>${jdbc.version}</version>
         </dependency>
+        <!-- quartz -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
 
     </dependencies>
 </project>
