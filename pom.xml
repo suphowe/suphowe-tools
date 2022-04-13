@@ -52,6 +52,8 @@
         <module>suphowe-hadoop</module>
         <!-- log 日志处理 -->
         <module>suphowe-log</module>
+        <!-- web 服务公共处理 -->
+        <module>suphowe-web</module>
 
     </modules>
 

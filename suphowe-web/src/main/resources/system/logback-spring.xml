@@ -3,7 +3,7 @@
 
     <contextName>logback</contextName>
     <property name="log.path" value="/home/test/logs/" />
-    <property name="log.server" value="suphowe-elasticsearch" />
+    <property name="log.server" value="suphowe-web" />
     <!--日志文件保留天数-->
     <property name="log.savetime" value="15" />
 
@@ -115,7 +115,7 @@
 
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <logger name="com.soft.elasticsearch" level="debug"/>
+        <logger name="com.soft.web" level="debug"/>
     </springProfile>
 
     <root level="info">
