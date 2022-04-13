@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.hadoop.yarn</groupId>
     <artifactId>suphowe-hadoop-yarn</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-hadoop-yarn</name>
     <description>suphowe-hadoop-yarn</description>
     <properties>

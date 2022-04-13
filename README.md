@@ -1,4 +1,6 @@
-suphowe-tools
+# suphowe-tools
+
+## modules
 
 | Module        | Port | 描述                      |
 | :--------   |:-----|:------------------------|
@@ -10,7 +12,7 @@ suphowe-tools
 | suphowe-rbac-shiro   | 8092 |
 | suphowe-rbac-security   | 8093 |
 | suphowe-cache-ehcache   | 8094 |
-| suphowe-control-admin   |      | server:8095 client:8096 |
+| suphowe-control-admin   |  server:8095 client:8096    |  |
 | suphowe-report-ureport2   | 8097 | 报表引擎                    |
 | suphowe-activiti   | 8098 | 工作流                     |
 | suphowe-email   | 8099 | 邮件                      |
@@ -20,6 +22,7 @@ suphowe-tools
 | suphowe-ratelimit-guava   | 8084 | guava api 访问限流          |
 | suphowe-ratelimit-redis   | 8085 | redis api 访问限流          |
 | suphowe-cache-session   | 8086 | session                 |
+| suphowe-elasticsearch   | 8087 | elasticsearch                 |
 | suphowe-datasource-sharding-jdbc   | 8070 | 分库分表数据处理                |
 | suphowe-docker   | 8071 |                         |
 | suphowe-datasource-dynamic   | 8072 | 动态添加/删除`数据源             |
@@ -30,6 +33,7 @@ suphowe-tools
 | suphowe-hadoop-spark   | 8077 | hadoop spark 数据处理       |
 | suphowe-datasource-clickhouse   | 8078 | clickhouse 数据处理         |
 | suphowe-datasource-oracle   | 8079 | oracle 数据处理                  |
+
 
 
 

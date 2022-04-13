@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.soft.cache</groupId>
 		<artifactId>suphowe-cache</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<groupId>com.soft.redis</groupId>
 	<artifactId>suphowe-redis</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>suphowe-redis</name>
 	<description>suphowe-redis</description>
 

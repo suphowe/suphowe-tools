@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.control</groupId>
         <artifactId>suphowe-control-admin</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.soft.control.server</groupId>
     <artifactId>suphowe-control-admin-server</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-control-admin-server</name>
     <description>suphowe-control-admin-server</description>
 

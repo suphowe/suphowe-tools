@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.task</groupId>
         <artifactId>suphowe-task</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.task.simple</groupId>
     <artifactId>suphowe-task-simple</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-task-simple</name>
     <description>suphowe-task-simple</description>
 

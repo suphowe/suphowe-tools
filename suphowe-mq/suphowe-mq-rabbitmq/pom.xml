@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.soft.mq</groupId>
 		<artifactId>suphowe-mq</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<groupId>com.soft.rabbitmq</groupId>
 	<artifactId>suphowe-mq-rabbitmq</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>suphowe-mq-rabbitmq</name>
 	<description>suphowe-mq-rabbitmq</description>
 

@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.soft</groupId>
 		<artifactId>suphowe-tools</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<groupId>com.soft.code</groupId>
 	<artifactId>suphowe-code-autocreate</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>suphowe-code-autocreate</name>
 	<description>suphowe-code-autocreate</description>
 

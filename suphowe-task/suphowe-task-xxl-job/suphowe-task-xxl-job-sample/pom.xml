@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.xxl</groupId>
         <artifactId>suphowe-task-xxl-job</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.xxljob.sample</groupId>
     <artifactId>suphowe-task-xxl-job-sample</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-task-xxl-job-sample</name>
     <description>suphowe-task-xxl-job-sample</description>
 

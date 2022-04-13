@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.datasource</groupId>
         <artifactId>suphowe-datasource</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.soft.oracle</groupId>
     <artifactId>suphowe-datasource-oracle</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-datasource-oracle</name>
     <description>suphowe-datasource-oracle</description>
 

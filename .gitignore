@@ -128,3 +128,5 @@ suphowe-mq/rocketmq-console-ng/target/
 suphowe-datasource/suphowe-datasource-clickhouse/target/
 
 suphowe-datasource/suphowe-datasource-oracle/target/
+
+suphowe-elasticsearch/target/

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 /**
  * 系统工具类
+ *
  * @author suphowe
  */
 public class SysUtils {
@@ -20,18 +21,18 @@ public class SysUtils {
     /**
      * 返回一个uuid
      */
-    public static String getUuid() {
+    public static String getUUID() {
         String uuid = UUID.randomUUID().toString();
         return uuid.substring(0, 8).concat(uuid.substring(9, 13)).concat(uuid.substring(14, 18)).concat(uuid.substring(19, 23)).concat(uuid.substring(24));
     }
 
-    public static String getUuid16() {
+    public static String getUUID16() {
         String uuid = UUID.randomUUID().toString();
         return uuid.substring(0, 8).concat(uuid.substring(9, 13)).concat(uuid.substring(14, 18));
     }
 
-    public static String getProperties(String filename,String param){
-        ResourceBundle rb=ResourceBundle.getBundle(filename);
+    public static String getProperties(String filename, String param) {
+        ResourceBundle rb = ResourceBundle.getBundle(filename);
         return rb.getString(param).trim();
     }
 
@@ -41,10 +42,10 @@ public class SysUtils {
         if (ip.isEmpty() || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if (ip.isEmpty()  || unknown.equalsIgnoreCase(ip)) {
+        if (ip.isEmpty() || unknown.equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ip.isEmpty()  || unknown.equalsIgnoreCase(ip)) {
+        if (ip.isEmpty() || unknown.equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
         return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
@@ -53,8 +54,8 @@ public class SysUtils {
     /**
      * 把字符串数组转换成浮点数组
      */
-    public static float[] strToFloat(String[] array){
-        if(array.length == 0){
+    public static float[] strToFloat(String[] array) {
+        if (array.length == 0) {
             return null;
         }
         float[] floats = new float[array.length];
@@ -67,8 +68,8 @@ public class SysUtils {
     /**
      * 把字符串转换成浮点数组
      */
-    public static float[] stringToFloat(String data){
-        if(data.isEmpty()){
+    public static float[] stringToFloat(String data) {
+        if (data.isEmpty()) {
             return null;
         }
         String[] arr = data.split(",");
@@ -82,14 +83,14 @@ public class SysUtils {
     /**
      * 将JSON转换成List
      */
-    public static List<Object> jsonToList(String text){
-        if(text.isEmpty()){
+    public static List<Object> jsonToList(String text) {
+        if (text.isEmpty()) {
             return null;
         }
         return JSON.parseObject(text, List.class);
     }
 
-    public static String getThisServerIp(){
+    public static String getThisServerIp() {
         String ip = "";
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
@@ -99,7 +100,7 @@ public class SysUtils {
                     for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                         InetAddress inetAddress = enumIpAddr.nextElement();
                         if (!inetAddress.isLoopbackAddress()) {
-                            String ipaddress = inetAddress.getHostAddress().toString();
+                            String ipaddress = inetAddress.getHostAddress();
                             if (!ipaddress.contains("::") && !ipaddress.contains("0:0:") && !ipaddress.contains("fe80")) {
                                 ip = ipaddress;
                             }

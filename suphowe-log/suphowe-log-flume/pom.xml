@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.log</groupId>
         <artifactId>suphowe-log</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.log.flume</groupId>
     <artifactId>suphowe-log-flume</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-log-flume</name>
     <description>suphowe-log-flume</description>
 

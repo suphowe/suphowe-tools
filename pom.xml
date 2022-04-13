@@ -12,7 +12,7 @@
 
     <groupId>com.soft</groupId>
     <artifactId>suphowe-tools</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <packaging>pom</packaging>
 
@@ -52,9 +52,6 @@
         <module>suphowe-hadoop</module>
         <!-- log 日志处理 -->
         <module>suphowe-log</module>
-
-
-
 
     </modules>
 

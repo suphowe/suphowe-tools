@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.soft.netty</groupId>
 		<artifactId>suphowe-netty</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 
 	<groupId>com.netty.server</groupId>
 	<artifactId>suphowe-netty-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>suphowe-netty-server</name>
 	<description>suphowe-netty-server</description>
 

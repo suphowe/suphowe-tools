@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.hadoop</groupId>
         <artifactId>suphowe-hadoop</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.hadoop.hbase</groupId>
     <artifactId>suphowe-hadoop-hbase</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-hadoop-hbase</name>
     <description>suphowe-hadoop-hbase</description>
 

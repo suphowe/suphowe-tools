@@ -1,0 +1,12 @@
+# ================= system ========================
+server:
+  port: 8087
+# ===============  log  =============================
+logging:
+  config: classpath:logback-spring.xml
+# =============== elasticsearch =====================
+# 9200用于外部通讯，基于http协议，程序与es的通信使用9200端口
+# 9300jar之间就是通过tcp协议通信，遵循tcp协议，es集群中的节点之间也通过9300端口进行通信
+elasticsearch:
+  cluster-nodes: 19.228.12.41
+  port: 9200

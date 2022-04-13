@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.soft.cache</groupId>
         <artifactId>suphowe-cache</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <groupId>com.soft.session</groupId>
     <artifactId>suphowe-cache-session</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>suphowe-cache-session</name>
     <description>suphowe-cache-session</description>
 

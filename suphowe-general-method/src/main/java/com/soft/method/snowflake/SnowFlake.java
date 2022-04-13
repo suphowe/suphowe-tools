@@ -77,7 +77,7 @@ public class SnowFlake {
      * @return 下一个ID
      */
     public synchronized long nextId() {
-        long currStmp = getNewstmp();
+        long currStmp = getNewStmp();
         if (currStmp < lastStmp) {
             throw new RuntimeException("Clock moved backwards.  Refusing to generate id");
         }
@@ -106,14 +106,18 @@ public class SnowFlake {
     }
 
     private long getNextMill() {
-        long mill = getNewstmp();
+        long mill = getNewStmp();
         while (mill <= lastStmp) {
-            mill = getNewstmp();
+            mill = getNewStmp();
         }
         return mill;
     }
 
-    private long getNewstmp() {
+    /**
+     * 获取系统时间
+     * @return 系统时间
+     */
+    private long getNewStmp() {
         return System.currentTimeMillis();
     }
 
