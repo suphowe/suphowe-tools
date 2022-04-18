@@ -1,7 +1,7 @@
 package com.soft.web.service;
 
 import com.soft.web.request.RequestDedupUtil;
-import com.soft.web.util.RedisUtil;
+import com.soft.web.util.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class RequestService {
     private static final Logger logger = LoggerFactory.getLogger(RequestService.class);
 
     @Autowired
-    RedisUtil redisUtil;
+    RedisUtils redisUtil;
 
     /**
      * 去重判断

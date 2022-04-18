@@ -1,6 +1,7 @@
 package com.soft.web.controller;
 
 import com.soft.web.service.RequestService;
+import com.soft.web.annotate.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class RequestController {
 
     @ApiOperation(value = "请求去重")
     @PostMapping("/dedup")
+    @SysLog(module = "请求数据处理", funcType = "request", funcDesc = "数据去重")
     public Object dedup(@RequestBody String requestData) {
         return requestService.dedup(requestData);
     }

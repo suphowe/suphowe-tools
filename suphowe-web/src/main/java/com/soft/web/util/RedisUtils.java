@@ -23,9 +23,9 @@ import java.util.concurrent.TimeUnit;
  * @author suphowe
  */
 @Component
-public final class RedisUtil {
+public final class RedisUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(RedisUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
 
     @Autowired
     @Qualifier(value = "mainRedisTemplate")
