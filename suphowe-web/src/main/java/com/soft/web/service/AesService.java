@@ -2,6 +2,7 @@ package com.soft.web.service;
 
 import com.soft.web.entity.ResponseMsg;
 import com.soft.web.util.AesUtils;
+import com.soft.web.util.ResponseBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,16 +29,13 @@ public class AesService {
      * @return 加密数据
      */
     public ResponseMsg getEncrypt(String id, String username) {
-        ResponseMsg responseMsg = new ResponseMsg();
         // data 数据
         LinkedHashMap<String, Object> data = new LinkedHashMap<>(8);
         data.put("id", id);
         data.put("username", username);
 
-        responseMsg.setCode(200);
-        responseMsg.setMessage("ok!");
-        responseMsg.setData(data);
-        return responseMsg;
+        ResponseBody responseMsg = new ResponseBody("200", data);
+        return responseMsg.createDataBody();
     }
 
     /**
@@ -46,11 +44,8 @@ public class AesService {
      * @return 解密数据
      */
     public ResponseMsg getDecrypt(String message) {
-        ResponseMsg responseMsg = new ResponseMsg();
-        responseMsg.setCode(200);
-        responseMsg.setMessage("ok!");
-        responseMsg.setData(AesUtils.decrypt(message, key));
-        return responseMsg;
+        ResponseBody responseMsg = new ResponseBody("200", AesUtils.decrypt(message, key));
+        return responseMsg.createDataBody();
     }
 
 }

@@ -1,13 +1,15 @@
 # suphowe-web
 springboot web服务 公共处理工具
 
-| 说明          | 链接文件                                                                                                                                                                                                                                   |
-|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Request请求去重 | [RequestDedupUtil.java](/src/main/java/com/soft/web/request/RequestDedupUtil.java)<br/>[RequestService.java](/src/main/java/com/soft/web/service/RequestService.java)                                                                  |
-| Aop 日志记录 | [SysLog.java](/src/main/java/com/soft/web/annotate/SysLog.java)<br/>[SysLogAspect.java](/src/main/java/com/soft/web/system/SysLogAspect.java)                                                                                          |
-| 自定义拦截器 | [CustomizeInterceptor.java](/src/main/java/com/soft/system/CustomizeInterceptor.java)<br/>[CustomizeWebMvcConfig.java](/src/main/java/com/soft/system/CustomizeWebMvcConfig.java)                                                      |  
-| 初始化任务 | [StartCommandLineRunner.java](/src/main/java/com/soft/system/StartCommandLineRunner.java)                                                                                                                                              |
+| 说明          | 链接文件                                                                                                                                                                                                                                      |
+|:------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Request请求去重 | [RequestDedupUtil.java](/src/main/java/com/soft/web/request/RequestDedupUtil.java)<br/>[RequestService.java](/src/main/java/com/soft/web/service/RequestService.java)                                                                     |
+| Aop 日志记录 | [SysLog.java](/src/main/java/com/soft/web/annotate/SysLog.java)<br/>[SysLogAspect.java](/src/main/java/com/soft/web/system/SysLogAspect.java)                                                                                             |
+| 自定义拦截器 | [CustomizeInterceptor.java](/src/main/java/com/soft/system/CustomizeInterceptor.java)<br/>[CustomizeWebMvcConfig.java](/src/main/java/com/soft/system/CustomizeWebMvcConfig.java)                                                         |  
+| 初始化任务 | [StartCommandLineRunner.java](/src/main/java/com/soft/system/StartCommandLineRunner.java)                                                                                                                                                 |
 | 接口数据加密 | [ResponseEncrypt.java](/src/main/java/com/soft/annotate/ResponseEncrypt.java)<br/>[ResponseEncryptAdvice.java](/src/main/java/com/soft/system/ResponseEncryptAdvice.java)<br/>[AesUtils.java](/src/main/java/com/soft/util/AesUtils.java) |
+| 线程池使用 | [ExecutorConfig.java]()<br/>[VisiableThreadPoolTaskExecutor.java]()<br/>[AsyncService.java]()                                                                                                                                             |
+| 统一返回类 | [ResponseBody.java]()<br/>[ResponseMsg.java]()                                                                                                                                                                                                |
 
 
 ## RequestDedup 请求去重
@@ -61,3 +63,31 @@ springboot web服务 公共处理工具
 - 编写加密和解密类 [AesUtils.java]()
 - 实现 [ResponseBodyAdvice]() ，对传入body和返回值进行操作，判断返回是否为 [ResponseMsg]()， 是则进行加密处理
 - 在需要进行加密的controller ，返回为 [ResponseMsg]()， 添加注解 [@ResponseEncrypt]()
+
+## 线程池使用
+- 线程池配置 [ExecutorConfig.java]()
+```properties
+# 异步线程配置
+# 配置核心线程数
+async.executor.thread.core_pool_size = 5
+# 配置最大线程数
+async.executor.thread.max_pool_size = 5
+# 配置队列大小
+async.executor.thread.queue_capacity = 99999
+# 配置线程池中的线程的名称前缀
+async.executor.thread.name.prefix = async-service-
+```
+- 配置线程池使用情况打印 [VisiableThreadPoolTaskExecutor.java]()
+- 创建线程池的使用 [AsyncService.java]()
+
+## 统一返回类
+- 返回消息实体类 [ResponseMsg.java]()
+- 返回 body 处理 [ResponseBody.java]()
+- 使用方法
+```text
+// 无data
+return new ResponseBody("200").createNullDataBody();
+
+// 存在data
+return new ResponseBody("200", data).createDataBody();
+```

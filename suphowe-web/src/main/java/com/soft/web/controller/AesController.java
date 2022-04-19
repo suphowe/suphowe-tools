@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 请求测试
  * @author suphowe
  */
-@Api(tags = "Aes加解密", description = "加密数据接口")
+@Api(tags = "Aes加解密")
 @RestController
 @RequestMapping("/aes")
 public class AesController {

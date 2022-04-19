@@ -20,6 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,6 +96,8 @@ public class SysLogAspect {
             sysLogInfo.setRequestIp(request.getRemoteAddr());
             // 请求URI
             sysLogInfo.setRequestUri(request.getRequestURI());
+            // 请求时间
+            sysLogInfo.setCreateTime(LocalDateTime.now().toString());
             logger.info("记录操作日志:{}", sysLogInfo);
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,6 +139,8 @@ public class SysLogAspect {
             sysExLogInfo.setRequestIp(request.getRemoteAddr());
             // 操作URI
             sysExLogInfo.setRequestUri(request.getRequestURI());
+            // 请求时间
+            sysExLogInfo.setCreateTime(LocalDateTime.now().toString());
             logger.info("记录操作异常日志:{}", sysExLogInfo);
         } catch (Exception exception) {
             exception.printStackTrace();
