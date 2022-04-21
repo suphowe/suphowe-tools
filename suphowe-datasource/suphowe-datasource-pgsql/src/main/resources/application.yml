@@ -1,0 +1,13 @@
+#################### version #################################
+soft:
+  version: v1.0
+# ==============启用端口号 server port ============================
+server:
+  port: 8045
+# ##############################pgsql datasource#########################################
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://19.228.12.31:5432/suphowe
+    username: postgres
+    password: postgres

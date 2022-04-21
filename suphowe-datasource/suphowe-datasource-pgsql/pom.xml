@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft.datasource</groupId>
+        <artifactId>suphowe-datasource</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.soft.pgsql</groupId>
+    <artifactId>suphowe-datasource-pgsql</artifactId>
+    <version>1.0.0</version>
+    <name>suphowe-datasource-pgsql</name>
+    <description>suphowe-datasource-pgsql</description>
+
+    <properties>
+        <postgresql.version>42.3.3</postgresql.version>
+        <druid.version>1.2.6</druid.version>
+        <mybatis.version>2.2.0</mybatis.version>
+        <mybatis.plus.version>3.4.3.3</mybatis.plus.version>
+        <jdbc.version>2.5.4</jdbc.version>
+    </properties>
+
+    <dependencies>
+        <!-- postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.version}</version>
+        </dependency>
+        <!-- JdbcTemplate -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

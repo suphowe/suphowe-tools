@@ -31,6 +31,8 @@
         <module>suphowe-datasource-sharding-jdbc</module>
         <!-- 动态添加/删除`数据源 -->
         <module>suphowe-datasource-dynamic</module>
+        <!-- pgsql数据库数据源配置 -->
+        <module>suphowe-datasource-pgsql</module>
     </modules>
 
     <properties>

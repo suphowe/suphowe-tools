@@ -3,7 +3,7 @@
 soft:
   version: 1.0
 server:
-  port: 8078
+  port: 8040
 # clickhouse 数据源配置
 spring:
   datasource:

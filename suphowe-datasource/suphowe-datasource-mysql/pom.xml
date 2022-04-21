@@ -18,6 +18,12 @@
     <properties>
         <jasypt.version>3.0.3</jasypt.version>
         <jwt.version>3.18.1</jwt.version>
+        <!-- mysql -->
+        <mysql.connector.version>8.0.25</mysql.connector.version>
+        <druid.version>1.2.6</druid.version>
+        <mybatis.version>2.2.0</mybatis.version>
+        <mybatis.plus.version>3.4.3.3</mybatis.plus.version>
+        <jdbc.version>2.5.4</jdbc.version>
     </properties>
 
     <dependencies>
@@ -25,30 +31,30 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.25</version>
+            <version>${mysql.connector.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.6</version>
+            <version>${druid.version}</version>
         </dependency>
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.0</version>
+            <version>${mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3.3</version>
+            <version>${mybatis.plus.version}</version>
         </dependency>
         <!-- JdbcTemplate -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-            <version>2.5.4</version>
+            <version>${jdbc.version}</version>
         </dependency>
         <!-- 配置文件加密 -->
         <dependency>

@@ -1,6 +1,6 @@
 # ================= system ========================
 server:
-  port: 8061
+  port: 8095
 # ===============  log  =============================
 logging:
   config: classpath:system/logback-spring.xml

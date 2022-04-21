@@ -1,6 +1,6 @@
 ##################### 服务配置 #####################
 server:
-  port: 8079
+  port: 8044
   tomcat:
     uri-encoding: UTF-8
   servlet:
