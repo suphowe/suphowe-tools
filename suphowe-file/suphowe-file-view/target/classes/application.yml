@@ -1,0 +1,11 @@
+server:
+  port: 8054
+# ===============  log  =============================
+logging:
+  config: classpath:logback-spring.xml
+jodconverter:
+  local:
+    enabled: true
+    office-home: C:\Program Files (x86)\OpenOffice 4
+    max-tasks-per-process: 10
+    port-numbers: 8100

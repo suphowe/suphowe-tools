@@ -42,6 +42,8 @@
         <module>suphowe-actuator</module>
         <!-- 邮件操作 -->
         <module>suphowe-email</module>
+        <!-- 文件操作 -->
+        <module>suphowe-file</module>
         <!-- api 访问限流 -->
         <module>suphowe-ratelimit</module>
         <!-- rbac 权限验证 -->
