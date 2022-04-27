@@ -6,28 +6,28 @@ import com.aspose.cells.Workbook;
 import com.aspose.slides.Presentation;
 import com.aspose.words.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * word excel pptx 转 pdf
  * @author suphowe
  */
 public class AsposeUtil {
 
-
-
     public static void main(String[] args) throws Exception {
         AsposeUtil bean = new AsposeUtil();
         //bean.word2Pdf2("D:\\pdf\\12.docx","D:\\pdf\\12.pdf");
         //bean.excel2Pdf("C:\\test\\GFPS组织架构信息导入示例20220422092149.xlsx","C:\\test\\GFPS组织架构信息导入示例20220422092149.pdf");
-        bean.word2Pdf("C:\\test\\GFPS工具 -需求分析说明书 20220415.docx","C:\\test\\GFPS工具 -需求分析说明书 20220415.pdf");
+        bean.wordToPdf("C:\\test\\GFPS工具 -需求分析说明书 20220415.docx","C:\\test\\GFPS工具 -需求分析说明书 20220415.pdf");
         //bean.ppt2Pdf("C:\\test\\长安福特_HR数字化建设项目 蓝图概览方案_Final.pptx","C:\\test\\长安福特_HR数字化建设项目 蓝图概览方案_Final.pdf");
     }
 
     /**
      * word转pdf
-     * inPath: 输入word的路径
-     * outPath: 输出pdf的路径
+     * @param inPath 输入word的路径
+     * @param outPath 输出pdf的路径
      */
-    public void word2Pdf(String inPath, String outPath) throws Exception {
+    public void wordToPdf(String inPath, String outPath) {
         if (!getLicense()) {
             System.out.println("非法------------");
             return;
@@ -63,11 +63,49 @@ public class AsposeUtil {
 
     /**
      * word转pdf
+     * @param inPath 输入word的路径
+     * @param response 输出pdf文件流到返回
+     */
+    public void wordToPdfStream(String inPath, HttpServletResponse response) {
+        if (!getLicense()) {
+            System.out.println("非法------------");
+            return;
+        }
+        long old = System.currentTimeMillis();
+        OutputStream outputStream = null;
+        try {
+            //解决乱码
+            //如果是windows执行，不需要加这个
+            //TODO 如果是linux执行，需要添加这个*****
+            //FontSettings.setFontsFolder("/usr/share/fonts",true);
+
+            Document doc = new Document(inPath);
+            outputStream = response.getOutputStream();;
+            //全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF, EPUB, XPS, SWF 相互转换
+            doc.save(outputStream, SaveFormat.PDF);
+            //计算时间
+            long now = System.currentTimeMillis();
+            System.out.println("共耗时：" + ((now - old) / 1000.0) + "秒");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * word转pdf
      * @param path      pdf输出路径
      * @param wordInput word输入流
      * @param wordName  word文档的名称
      */
-    public void word2Pdf(String path, InputStream wordInput, String wordName) {
+    public void wordToPdf(String path, InputStream wordInput, String wordName) {
         if (!getLicense()) {
             System.out.println("非法");
             return;
@@ -108,8 +146,54 @@ public class AsposeUtil {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * word转pdf
+     * @param wordInput word输入流
+     * @param wordName  word文档的名称
+     * @param response 输出word文件流到返回
+     */
+    public void wordToPdfStream(InputStream wordInput, String wordName, HttpServletResponse response) {
+        if (!getLicense()) {
+            System.out.println("非法");
+            return;
+        }
 
+        //新建一个空白pdf文档
+        long old = System.currentTimeMillis();
+        OutputStream outputStream = null;
+        try {
+            outputStream = response.getOutputStream();
+            //Address是将要被转化的word文档
+            Document doc = null;
+            try {
+                doc = new Document(wordInput);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                //全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF, EPUB, XPS, SWF 相互转换
+                if (doc != null) {
+                    doc.save(outputStream, SaveFormat.PDF);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            long now = System.currentTimeMillis();
+            //转化用时
+            System.out.println("共耗时：" + ((now - old) / 1000.0) + "秒");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -117,7 +201,7 @@ public class AsposeUtil {
      * @param path excel 路径
      * @param outPath pdf输出路径
      */
-    public void excel2Pdf(String path,String outPath) {
+    public void excelToPdf(String path, String outPath) {
         if (!getLicenseExcel()) {
             System.out.println("非法------------");
             return;
@@ -127,7 +211,7 @@ public class AsposeUtil {
         try {
             Workbook wb = new Workbook(path);
             fileOutputStream= new FileOutputStream(file);
-            wb.save(fileOutputStream, com.aspose.cells.SaveFormat.PDF);
+            wb.save(fileOutputStream, SaveFormat.PDF);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -142,11 +226,39 @@ public class AsposeUtil {
     }
 
     /**
+     * excel 转 pdf
+     * @param path excel 路径
+     * @param response 输出文件流到返回
+     */
+    public void excelToPdfStream(String path, HttpServletResponse response) {
+        if (!getLicenseExcel()) {
+            System.out.println("非法------------");
+            return;
+        }
+        OutputStream outputStream = null;
+        try {
+            Workbook wb = new Workbook(path);
+            outputStream= response.getOutputStream();
+            wb.save(outputStream, SaveFormat.PDF);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * ppt 转 pdf
      * @param path ppt路径
      * @param outPath pdf输出路径
      */
-    public void ppt2Pdf(String path,String outPath) {
+    public void pptToPdf(String path, String outPath) {
         if (!getLicensePpt()) {
             System.out.println("非法------------");
             return;
@@ -170,7 +282,35 @@ public class AsposeUtil {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * ppt 转 pdf
+     * @param path ppt路径
+     * @param response 输出文件流到返回
+     */
+    public void pptToPdfStream(String path, HttpServletResponse response) {
+        if (!getLicensePpt()) {
+            System.out.println("非法------------");
+            return;
+        }
+        OutputStream outputStream = null;
+        try {
+            //输入pdf路径
+            Presentation pres = new Presentation(path);
+            outputStream = response.getOutputStream();
+            pres.save(outputStream, com.aspose.slides.SaveFormat.Pdf);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

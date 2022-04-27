@@ -132,3 +132,5 @@ suphowe-datasource/suphowe-datasource-oracle/target/
 suphowe-elasticsearch/target/
 
 suphowe-web/target/
+
+suphowe-log/suphowe-log-elasticsearch/target/

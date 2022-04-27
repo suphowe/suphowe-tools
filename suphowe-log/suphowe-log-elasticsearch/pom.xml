@@ -11,11 +11,11 @@
     </parent>
 
     <groupId>com.soft.elasticsearch</groupId>
-    <artifactId>suphowe-elasticsearch</artifactId>
+    <artifactId>suphowe-log-elasticsearch</artifactId>
     <version>1.0.0</version>
 
-    <name>suphowe-elasticsearch</name>
-    <description>suphowe-elasticsearch</description>
+    <name>suphowe-log-elasticsearch</name>
+    <description>suphowe-log-elasticsearch</description>
 
     <properties>
         <!-- knife4j -->
