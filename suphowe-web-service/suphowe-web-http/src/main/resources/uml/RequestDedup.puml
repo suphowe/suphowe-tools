@@ -1,0 +1,22 @@
+@startuml
+state "服务端" as 服务端处理1
+state "服务端" as 服务端处理2
+state "客户端" as 客户端接收
+
+    [*] -[#black]right-> 客户端
+    客户端: 请求信息
+    客户端 -[#black]down-> 服务端
+    服务端: 获取请求数据,并使用MD5加密请求数据作为key
+    服务端 -[#black]-> Redis : 加密key
+    Redis: 获取key对应value
+    Redis -[#black]> 判断
+    判断: value是否存在
+    判断 -[#blue]down-> 服务端处理1: 不存在
+    服务端处理1 : 将key,value存入Redis,设置过期时间
+    服务端处理1 -down[#black]-> 客户端接收
+    判断 -down-> 服务端处理2: 存在
+    服务端处理2: 返回Redis中cache
+    服务端处理2 -down[#black]-> 客户端接收
+    客户端接收: 接收服务端返回
+    客户端接收 -right[#black]-> [*]
+@enduml

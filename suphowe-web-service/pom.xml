@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.soft</groupId>
+        <artifactId>suphowe-tools</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.web.service</groupId>
+    <artifactId>suphowe-web-service</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>pom</packaging>
+
+    <name>suphowe-web-service</name>
+    <description>suphowe-web-service</description>
+
+    <properties>
+    </properties>
+
+    <modules>
+        <!-- web 服务公共处理 -->
+        <module>suphowe-web-http</module>
+        <!-- websocket 服务公共处理 -->
+        <module>suphowe-websocket</module>
+    </modules>
+
+</project>

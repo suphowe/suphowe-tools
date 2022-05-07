@@ -1,0 +1,5 @@
+server:
+  port: 8096
+# 接口密码
+mySocket:
+  myPwd: suphowe123

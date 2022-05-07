@@ -1,0 +1,12 @@
+# ================= system ========================
+server:
+  port: 8061
+# ===============  log  =============================
+logging:
+  config: classpath:system/logback-spring.xml
+# =============== 数据加密密钥 =========================
+module:
+  boots:
+    response:
+      aes:
+        key: xy934yrn9342u0ry4br8cn-9u2

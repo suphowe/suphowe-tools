@@ -8,6 +8,8 @@ import javax.swing.*;
  */
 public class PicturePlayer extends JFrame {
 
+    private static final long serialVersionUID = -6866165391391658043L;
+
     ImageIcon[] imageIcons = {};
 
     ImageIcon imageIcon;

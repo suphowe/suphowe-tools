@@ -5,10 +5,11 @@ import java.awt.*;
 
 /**
  * JPanel标签
- *
  * @author suphowe
  */
 public class PictureJpanel extends JPanel {
+
+    private static final long serialVersionUID = 9009849662607719644L;
 
     int index;
 

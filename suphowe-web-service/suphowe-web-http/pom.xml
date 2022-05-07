@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.web.service</groupId>
+        <artifactId>suphowe-web-service</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.soft.web</groupId>
+    <artifactId>suphowe-web</artifactId>
+    <version>1.0.0</version>
+
+    <name>suphowe-web-http</name>
+    <description>suphowe-web-http</description>
+
+    <properties>
+        <knife4j.version>3.0.3</knife4j.version>
+        <aop.version>2.5.4</aop.version>
+        <!-- redis -->
+        <redis.version>2.5.4</redis.version>
+        <jedis.version>3.7.0</jedis.version>
+        <commons.pool.version>2.11.1</commons.pool.version>
+    </properties>
+
+    <dependencies>
+        <!-- knife4j -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${aop.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
+        <!-- 对象池，使用redis时必须引入 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons.pool.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

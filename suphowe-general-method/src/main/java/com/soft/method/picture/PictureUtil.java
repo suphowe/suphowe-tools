@@ -5,8 +5,6 @@ import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -27,33 +25,31 @@ import java.util.Iterator;
  */
 public class PictureUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(PictureUtil.class);
-
     /**
      * 改变图片 像素
-     *
-     * @param file     图片文件
+     * @param fileName 图片文件
      * @param zipPicLength 压缩后图片大小(KB)
-     * @param imageType      图片类型(jpg,png)
-     * @return 压缩后图片
+     * @param picType 图片类型(jpg,png)
+     * @return 图片文件
      */
-    public File compressPictureByQality(File file, float zipPicLength, String imageType) {
-        BufferedImage src = null;
-        FileOutputStream out = null;
-        ImageWriter imgWrier;
-        ImageWriteParam imgWriteParams;
-        //需要压缩的大小
-        float newLength = zipPicLength * 1000;
-        //原图大小
-        float oldLength = Float.parseFloat(Long.toString(file.length()));
-        if (oldLength < newLength) {
-            return null;
-        }
-        float qality = newLength / oldLength;
+    public static File revisePicturePixel(String fileName, float zipPicLength, String picType) {
         try {
-            logger.info("开始设置图片压缩参数 qality:{} , imageType:{}", qality, imageType);
+            File file = new File(fileName);
+            //需要压缩的大小
+            float newLength = zipPicLength * 1000;
+            //原图大小
+            float oldLength = Float.parseFloat(Long.toString(file.length()));
+            if (oldLength < newLength) {
+                return null;
+            }
+            //压缩比
+            float qality = newLength / oldLength;
+            BufferedImage src;
+            FileOutputStream out;
+            ImageWriter imageWriter;
+            ImageWriteParam imgWriteParams;
             // 指定写图片的方式为 jpg
-            imgWrier = ImageIO.getImageWritersByFormatName(imageType).next();
+            imageWriter = ImageIO.getImageWritersByFormatName(picType).next();
             imgWriteParams = new javax.imageio.plugins.jpeg.JPEGImageWriteParam(
                     null);
             // 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
@@ -61,44 +57,33 @@ public class PictureUtil {
             // 这里指定压缩的程度，参数qality是取值0~1范围内，
             imgWriteParams.setCompressionQuality(qality);
             imgWriteParams.setProgressiveMode(ImageWriteParam.MODE_DISABLED);
-            /**ColorModel.getRGBdefault();*/
+            // 实例化一个对象 ColorModel.getRGBdefault();
             ColorModel colorModel = ImageIO.read(file).getColorModel();
             imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(
                     colorModel, colorModel.createCompatibleSampleModel(32, 32)));
-            logger.info("结束设定压缩图片参数");
             if (!file.exists()) {
-                logger.info("Not Found Img File,文件不存在");
                 throw new FileNotFoundException("Not Found Img File,文件不存在");
             } else {
-                logger.info("图片转换前大小" + file.length() + "字节");
                 src = ImageIO.read(file);
                 out = new FileOutputStream(file);
-                imgWrier.reset();
+                imageWriter.reset();
                 // 必须先指定 out值，才能调用write方法, ImageOutputStream可以通过任何
                 // OutputStream构造
-                imgWrier.setOutput(ImageIO.createImageOutputStream(out));
+                imageWriter.setOutput(ImageIO.createImageOutputStream(out));
                 // 调用write方法，就可以向输入流写图片
-                imgWrier.write(null, new IIOImage(src, null, null),
+                imageWriter.write(null, new IIOImage(src, null, null),
                         imgWriteParams);
-                logger.info("图片转换后大小" + file.length() + "字节");
                 out.flush();
                 out.close();
+                return file;
             }
         } catch (Exception e) {
-            logger.error("压缩图片失败 FileName:{} , Qality:{} , imageType:{}", file.getName(), qality, imageType, e);
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } catch (Exception e) {
-                logger.error("压缩图片失败 FileName:{} , Qality:{} , imageType:{}", file.getName(), qality, imageType, e);
-            }
+            e.printStackTrace();
+            return null;
         }
-        return file;
     }
 
-    public void getPictureAttributes(String pictureFile) {
+    public static void getPictureAttributes(String pictureFile) {
         switch (getPictureType(pictureFile)){
             case "jpg":
                 getJpgPictureAttributes(pictureFile);
@@ -122,12 +107,12 @@ public class PictureUtil {
      * @param pictureFile 图片文件
      * @return 文件格式
      */
-    private String getPictureType(String pictureFile){
+    private static String getPictureType(String pictureFile){
         String[] pictureTypes = pictureFile.split("\\.");
         return pictureTypes[1].toLowerCase();
     }
 
-    private void getJpgPictureAttributes(String jpgFile) {
+    private static void getJpgPictureAttributes(String jpgFile) {
         File pictureFile = new File(jpgFile);
         if (!pictureFile.exists()){
             return;
@@ -153,7 +138,7 @@ public class PictureUtil {
 
     }
 
-    private void getOtherPictureAttributes(String pictureFileName){
+    private static void getOtherPictureAttributes(String pictureFileName){
         File file = new File(pictureFileName);
         BufferedImage bi = null;
         try {
@@ -173,8 +158,7 @@ public class PictureUtil {
 
     public static void main (String[] args) {
         String fileName = "G:/ipc/2019_G50S视频/K171+0/2018-11-08_08-19-39/3fc5dcab-f768-4c3c-a76d-5b7af64c236a.bmp";
-        PictureUtil pictureUtil = new PictureUtil();
-        pictureUtil.getPictureAttributes(fileName);
+        PictureUtil.getPictureAttributes(fileName);
     }
 
 }

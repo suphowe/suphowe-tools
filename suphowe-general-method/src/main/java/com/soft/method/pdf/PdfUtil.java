@@ -1,58 +1,44 @@
 package com.soft.method.pdf;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.itextpdf.text.pdf.*;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 
 /**
  * PDF公共类
- *
  * @author suphowe
  */
 public class PdfUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(PdfUtil.class);
-
     /**
      * 设置页面大小和背景颜色
      */
-    public Rectangle setPdfPage() {
+    public static Rectangle setPdfPage() {
         //页面大小
-        Rectangle rect = new Rectangle(PageSize.B5.rotate());
+        Rectangle rect = new Rectangle(PageSize.A4.rotate());
         //页面背景色
         rect.setBackgroundColor(BaseColor.WHITE);
         return rect;
     }
 
     /**
-     * 设置PDF的版本和输出文件
-     *
+     * 设置PDF的版本
      * @param document 文档
-     * @param filePath 路径
+     * @param outputStream 输出流
      */
-    public PdfWriter setPdfWriter(Document document, String filePath) {
+    public static PdfWriter setPdfWriter(Document document, OutputStream outputStream) {
         try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter writer = PdfWriter.getInstance(document, outputStream);
             //PDF版本(默认1.4)
-            writer.setPdfVersion(PdfWriter.PDF_VERSION_1_2);
+            writer.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
             return writer;
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
             return null;
         }
 
@@ -60,170 +46,212 @@ public class PdfUtil {
 
     /**
      * 设置PDF字体
-     *
      * @param fontSize 字号
      */
-    public Font setPdfFont(int fontSize) {
+    public static Font setPdfFont(int fontSize) {
         try {
             BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
             return new Font(bfChinese, fontSize, Font.NORMAL);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
             return null;
         }
     }
 
-
     /**
      * 设置PDF文档属性
-     *
      * @param document 文档
+     * @param title 题目
+     * @param author 作者
+     * @param subject 主题
+     * @param keywords 关键词
+     * @param creator 创作者
+     * @param marginLeft 左边距
+     * @param marginRight 右边距
+     * @param marginTop 顶编剧
+     * @param marginBottom 下边距
      */
-    public void setPdfProperty(Document document) {
-        //文档属性
-        //添加题目
-        document.addTitle("检测报告统计");
-        //添加作者
-        document.addAuthor("Author@rensanning");
-        //添加主题
-        document.addSubject("Subject@iText sample");
-        //添加关键词
-        document.addKeywords("Keywords@iText");
-        //添加创作者
-        document.addCreator("Creator@iText");
-        //页边空白
-        document.setMargins(10, 20, 30, 40);
+    public static Document setPdfProperty(Document document, String title, String author, String subject,
+                               String keywords, String creator, int marginLeft, int marginRight,
+                               int marginTop, int marginBottom) {
+        if (title.trim().length() > 0) {
+            document.addTitle(title);
+        }
+        if (author.trim().length() > 0) {
+            document.addAuthor(author);
+        }
+        if (subject.trim().length() > 0) {
+            document.addSubject(subject);
+        }
+        if (keywords.trim().length() > 0) {
+            document.addSubject(keywords);
+        }
+        if (creator.trim().length() > 0) {
+            document.addCreator(creator);
+        }
+        //设置创建日期
+        document.addCreationDate();
+        document.setMargins(marginLeft, marginRight, marginTop, marginBottom);
+        return document;
     }
 
     /**
      * 向PDF中写入String
-     *
      * @param document 文档
-     * @param data 数据
-     * @param type 是否设置居中
+     * @param message 数据
+     * @param middleType 是否设置居中
      */
-    public void setPdfString(Document document, String data, Font font, int type) {
+    public static void addPdfString(Document document, String message, Font font, boolean middleType) {
         try {
-            Paragraph inputData = new Paragraph(data, font);
-            if (type == 1) {
+            Paragraph inputData = new Paragraph(message, font);
+            if (middleType) {
                 inputData.setAlignment(1);
             }
             document.add(inputData);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
-     * 向PDF中写入Chunk组块内容
-     *
+     * 添加空行
      * @param document 文档
      */
-    public void setPdfChunk(Document document, String data, Font font) {
+    public static void addSpaceRow(Document document) {
         try {
-            Chunk id = new Chunk(data, font);
-            id.setBackground(BaseColor.BLACK, 1f, 0.5f, 1f, 1.5f);
+            Font font = setPdfFont(18);
+            Paragraph inputData = new Paragraph(" ", font);
+            document.add(inputData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * 向PDF中写入Chunk组块内容
+     * @param document 文档
+     * @param message 数据
+     * @param font 字体
+     * @param extraLeft 左侧额外
+     * @param extraBottom 下侧额外
+     * @param extraRight 右侧额外
+     * @param extraTop 上侧额外
+     */
+    public static void addPdfChunk(Document document, String message, Font font,
+                            float extraLeft, float extraBottom, float extraRight, float extraTop) {
+        try {
+            Chunk id = new Chunk(message, font);
+            id.setBackground(BaseColor.BLACK, extraLeft, extraBottom, extraRight, extraTop);
             id.setTextRise(6);
             document.add(id);
             document.add(Chunk.NEWLINE);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
      * 向PDF中写入Phrase对象(带下划线的短语)
-     *
      * @param document 文档
+     * @param message 数据
+     * @param font 字体
+     * @param thickness 宽度
+     * @param yPosition y位置
+     * @param fixedLeading 头位置
      */
-    public void setPdfPhrase(Document document, String data, Font font) {
+    public static void addPdfPhrase(Document document, String message, Font font,
+                             float thickness, float yPosition, float fixedLeading) {
         //Phrase对象: a List of Chunks with leading
         try {
             document.add(Chunk.NEWLINE);
             Phrase director = new Phrase();
-            Chunk name = new Chunk(data, font);
+            Chunk name = new Chunk(message, font);
             name.setUnderline(0.2f, -2f);
             director.add(name);
-            director.setLeading(24);
+            director.setLeading(fixedLeading);
             document.add(director);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
      * 向PDF中写入Paragraph对象
-     *
      * @param document 文档
+     * @param message 数据
+     * @param font 字体
      */
-    public void setPdfParagraph(Document document, String data, Font font) {
+    public static void addPdfParagraph(Document document, String message, Font font) {
         try {
-            Paragraph info = new Paragraph(data, font);
+            Paragraph info = new Paragraph(message, font);
             document.add(info);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
      * 放入链接或锚点
-     *
      * @param document PDF文件
-     * @param name     语言 CN EN
-     * @param url      文件url
-     * @param font     文件字体
+     * @param language 语言 CN EN
+     * @param url 文件url
+     * @param font 文件字体
      */
-    public void setPdfAnchor(Document document, String anchorName, String name, String url, Font font) {
+    public static void addPdfAnchor(Document document, String anchorName, String language, String url, Font font) {
         try {
             document.add(Chunk.NEWLINE);
             Anchor anchor = new Anchor(anchorName, font);
-            if (name.trim().length() > 0) {
-                anchor.setName(name);
+            if (!StrUtil.hasBlank(language)) {
+                anchor.setName(language);
             }
-            if (url.trim().length() > 0) {
+            if (!StrUtil.hasBlank(url)) {
                 anchor.setReference(url);
             }
             document.add(anchor);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
      * 放入图片
-     *
      * @param document  PDF文件
-     * @param fileName  文件名
+     * @param fileName  图片文件名
+     * @param absoluteX  X绝对位置
+     * @param absoluteY Y绝对位置
+     * @param borderWidth 边框宽度
      * @param fitWidth  宽
      * @param fitHeight 高
+     * @param deg 旋转角度
      */
-    public void setPdfImage(Document document, String fileName, int fitWidth, int fitHeight) {
+    public static void addPdfImage(Document document, String fileName, float absoluteX, float absoluteY,
+                            float borderWidth, float fitWidth, float fitHeight, float deg) {
         try {
             document.add(Chunk.NEWLINE);
             Image img = Image.getInstance(fileName);
-            img.setAbsolutePosition(70, 50);
+            img.setAbsolutePosition(absoluteX, absoluteY);
             img.setAlignment(Image.LEFT | Image.TEXTWRAP);
             img.setBorder(Image.BOX);
-            img.setBorderWidth(10);
+            img.setBorderWidth(borderWidth);
             img.setBorderColor(BaseColor.WHITE);
             //大小
             img.scaleToFit(fitWidth, fitHeight);
             //旋转
-            img.setRotationDegrees(0);
+            img.setRotationDegrees(deg);
             document.add(img);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
-     * 写入文件到TABLE
-     *
-     * @param document PDF文件
-     * @param font     字体
-     * @param list     数据
+     * 写入信息到TABLE
+     * @param document 文档
+     * @param font 字体
+     * @param list 数据
      */
-    public void setPdfTable(Document document, Font font, List<HashMap<String, Object>> list) {
+    public static void addPdfTable(Document document, Font font, List<HashMap<String, Object>> list) {
         try {
             document.add(Chunk.NEWLINE);
             int colNum = 0;
@@ -231,126 +259,234 @@ public class PdfUtil {
                 colNum = list.get(0).size();
             }
             PdfPTable table = new PdfPTable(colNum);
-            for (int i = 0; i < list.size(); i++) {
-                HashMap<String, Object> thisMap = list.get(i);
+            for (HashMap<String, Object> thisMap : list) {
                 for (String key : thisMap.keySet()) {
                     table.addCell(new Paragraph(thisMap.get(key).toString(), font));
                 }
             }
             document.add(table);
         } catch (Exception e) {
-            logger.error("Exception:", e);
+            e.printStackTrace();
         }
     }
 
     /**
-     * 改变图片 像素
-     *
-     * @param fileName     图片文件
-     * @param zipPicLength 压缩后图片大小(KB)
-     * @param picType      图片类型(jpg,png)
-     * @return 图片文件
+     * 放入table
+     * @param document 文档
+     * @param fontSize 字号
+     * @param miniHeight 行高度
+     * @param columnAmount 每行数量
+     * @param list 数据
      */
-    public File compressPictureByQality(String fileName, float zipPicLength, String picType) {
+    public static void addPdfTable(Document document, int fontSize, int miniHeight, int columnAmount, List<String> list) {
         try {
-            File file = new File(fileName);
-            //需要压缩的大小
-            float newLength = zipPicLength * 1000;
-            //原图大小
-            float oldLength = Float.parseFloat(Long.toString(file.length()));
-            if (oldLength < newLength) {
-                return null;
+            PdfPCell cell = new PdfPCell();
+            PdfPTable table = new PdfPTable(columnAmount);
+            for (String data : list) {
+                cell.setPhrase(new Paragraph(PdfUtil.handleNullMessage(data), setPdfFont(fontSize)));
+                // 居中设置
+                cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                // 设置表格的高度
+                cell.setMinimumHeight(miniHeight);
+                table.addCell(cell);
             }
-            float qality = newLength / oldLength;
-            BufferedImage src = null;
-            FileOutputStream out = null;
-            ImageWriter imgWrier;
-            ImageWriteParam imgWriteParams;
-            // 指定写图片的方式为 jpg
-            imgWrier = ImageIO.getImageWritersByFormatName(picType).next();
-            imgWriteParams = new javax.imageio.plugins.jpeg.JPEGImageWriteParam(
-                    null);
-            // 要使用压缩，必须指定压缩方式为MODE_EXPLICIT
-            imgWriteParams.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            // 这里指定压缩的程度，参数qality是取值0~1范围内，
-            imgWriteParams.setCompressionQuality(qality);
-            imgWriteParams.setProgressiveMode(ImageWriteParam.MODE_DISABLED);
-            // 实例化一个对象 ColorModel.getRGBdefault();
-            ColorModel colorModel = ImageIO.read(file).getColorModel();
-            imgWriteParams.setDestinationType(new javax.imageio.ImageTypeSpecifier(
-                    colorModel, colorModel.createCompatibleSampleModel(32, 32)));
-            if (!file.exists()) {
-                throw new FileNotFoundException("Not Found Img File,文件不存在");
-            } else {
-                src = ImageIO.read(file);
-                out = new FileOutputStream(file);
-                imgWrier.reset();
-                // 必须先指定 out值，才能调用write方法, ImageOutputStream可以通过任何
-                // OutputStream构造
-                imgWrier.setOutput(ImageIO.createImageOutputStream(out));
-                // 调用write方法，就可以向输入流写图片
-                imgWrier.write(null, new IIOImage(src, null, null),
-                        imgWriteParams);
-                out.flush();
-                out.close();
-                return file;
-            }
+            document.add(table);
         } catch (Exception e) {
-            logger.info("Exception:", e);
-            return null;
+            e.printStackTrace();
         }
     }
 
-//    /**
-//     * 创建PDF文件
-//     */
-//    public void createPdfFile() {
-//        Document document = new Document(setPdfPage());
-//        Font font = setPdfFont(12);
-//        setPdfWriter(document, "G:/test.pdf");
-//        setPdfProperty(document);
-//        document.open();
-////        System.out.println(AppConstants.FONT_BODY);
-////        System.out.println(AppConstants.FONT_TITLE);
-////
-////        setPdfString(document, "这是一个测试", font, 1);
-////        setPdfChunk(document, "测试");
-////        setPdfPhrase(document,"this is 又有");
-////        setPdfParagraph(document,"this is a test");
-////        test(document);
-////        setPdfImage(document,"H:/大王临死前.jpg",800,600);
-////        setPdfTable(document, font);
-////        setPdfParagraph(document, ".相机名称:", font);
-////        setPdfParagraph(document, "事件:", font);
-////        setPdfParagraph(document, "触发时间:", font);
-//        List this_data_list = new ArrayList();
-//        LinkedHashMap<String, Object> data0 = new LinkedHashMap<String, Object>();
-//        data0.put("col1","编号");
-//        data0.put("col2", 1);
-//        this_data_list.add(data0);
-//
-//        LinkedHashMap<String, Object> data1 = new LinkedHashMap<String, Object>();
-//        data1.put("col1","相机名称");
-//        data1.put("col2","123");
-//        this_data_list.add(data1);
-//
-//        LinkedHashMap<String, Object> data2 = new LinkedHashMap<String, Object>();
-//        data2.put("col1","事件");
-//        data2.put("col2","345");
-//        this_data_list.add(data2);
-//
-//        LinkedHashMap<String, Object> data3 = new LinkedHashMap<String, Object>();
-//        data3.put("col1","触发时间");
-//        data3.put("col2","456");
-//        this_data_list.add(data3);
-//
-//        setPdfTable(document, font, this_data_list);
-//        setPdfImage(document, "G:/2019-07-16_183108.png", 560,420);
-//        document.close();
-//    }
-////
-//    public static void main(String[] args) throws Exception {
-//        PdfUtil pdfUtil = new PdfUtil();
-//        pdfUtil.createPdfFile();
-//    }
+    /**
+     * 放入table
+     * @param document 文档
+     * @param fontSize 字号
+     * @param miniHeight 行高度
+     * @param heads 表头
+     * @param list 数据
+     */
+    public static void addPdfTable(Document document, int fontSize, int miniHeight,
+                            List<String> heads, List<String> list) {
+        try {
+            PdfPCell cell = new PdfPCell();
+            PdfPTable table = new PdfPTable(heads.size());
+            // 放入head
+            for (String head : heads) {
+                cell.setPhrase(new Paragraph(PdfUtil.handleNullMessage(head), setPdfFont(fontSize)));
+                // 表头背景色
+                cell.setBackgroundColor(BaseColor.GRAY);
+                // 居中设置
+                cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                // 设置表格的高度
+                cell.setMinimumHeight(miniHeight);
+                table.addCell(cell);
+            }
+            // 放入数据
+            for (String data : list) {
+                cell.setPhrase(new Paragraph(PdfUtil.handleNullMessage(data), setPdfFont(fontSize)));
+                // 居中设置
+                cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                // 设置表格的高度
+                cell.setMinimumHeight(miniHeight);
+                table.addCell(cell);
+            }
+            document.add(table);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 放入竖表格(column设置颜色)
+     * @param document 文档
+     * @param fontSize 字号
+     * @param miniHeight 行高度
+     * @param columns 字段数据描述
+     * @param list 数据
+     * @param baseColor 背景色
+     */
+    public static void addPdfTable(Document document, int fontSize, int miniHeight,
+                            List<String> columns, List<String> list, BaseColor baseColor) {
+        try {
+            PdfPCell cell = new PdfPCell();
+            if (columns.size() != list.size()) {
+                return;
+            }
+            PdfPTable table = new PdfPTable(4);
+            for (int i = 0; i < columns.size(); i++) {
+                String column = columns.get(i);
+                String colMessage = list.get(i);
+                cell.setPhrase(new Paragraph(PdfUtil.handleNullMessage(column), setPdfFont(fontSize)));
+                // 表头背景色
+                cell.setBackgroundColor(baseColor);
+                // 居中设置
+                cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                // 设置表格的高度
+                cell.setMinimumHeight(miniHeight);
+                table.addCell(cell);
+                cell.setPhrase(new Paragraph(PdfUtil.handleNullMessage(colMessage), setPdfFont(fontSize)));
+                cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setMinimumHeight(miniHeight);
+                table.addCell(cell);
+            }
+            document.add(table);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 添加表格信息方法(可对表格进行行或列合并)
+     * @param table 创建的表格
+     * @param paragraphValue 填充表格的值信息
+     * @param fontSize 字体的大小
+     * @param minimumHeight 表格高度
+     * @param colSpan 是否跨列
+     * @param rowSpan 是否跨行
+     * @param colSize 具体跨几列
+     * @param rowSize 具体跨几行
+     * @param baseColor cell背景色
+     */
+    public static void addTableCell(PdfPTable table, String paragraphValue, int fontSize, float minimumHeight,
+                             boolean colSpan, boolean rowSpan, int colSize, int rowSize, BaseColor baseColor) {
+        PdfPCell cell = new PdfPCell();
+        cell.setPhrase(new Paragraph(paragraphValue, setPdfFont(fontSize)));
+        if (baseColor != null) {
+            cell.setBackgroundColor(baseColor);
+        }
+        // 居中设置
+        cell.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        // 设置表格的高度
+        cell.setMinimumHeight(minimumHeight);
+        // 是否跨列
+        if (colSpan) {
+            cell.setColspan(colSize);
+        }
+        // 是否跨行
+        if (rowSpan) {
+            cell.setRowspan(rowSize);
+        }
+        // 具体的某个cell加入到表格
+        table.addCell(cell);
+    }
+
+    /**
+     * pdf添加水印(两行三列)
+     */
+    public static void addWaterMark(PdfWriter pdfWriter, Document document, float size, String waterMarkName) {
+        try {
+            //获取pdf内容正文页面宽度
+            float pageWidth = document.right() + document.left();
+            //获取pdf内容正文页面高度
+            float pageHeight = document.top() + document.bottom();
+            BaseFont base = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+            PdfContentByte waterMarkPdfContent = pdfWriter.getDirectContentUnder();
+            Font waterMarkFont = new Font(base, size, Font.BOLD, BaseColor.LIGHT_GRAY);
+            Phrase phrase = new Phrase(waterMarkName, waterMarkFont);
+            //两行三列
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.25f, pageHeight * 0.2f, 45);
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.25f, pageHeight * 0.5f, 45);
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.25f, pageHeight * 0.8f, 45);
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.65f, pageHeight * 0.2f, 45);
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.65f, pageHeight * 0.5f, 45);
+            ColumnText.showTextAligned(waterMarkPdfContent, Element.ALIGN_CENTER, phrase,
+                    pageWidth * 0.65f, pageHeight * 0.8f, 45);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 合并PDF
+     * @param readers pdf列表
+     * @param outputStream 输出流
+     */
+    public static ByteArrayOutputStream mergerPdf (List<PdfReader> readers, ByteArrayOutputStream outputStream) {
+        Document document = new Document();
+        try {
+            PdfCopy copy = new PdfCopy(document, outputStream);
+            document.open();
+            int n;
+            for (PdfReader reader : readers) {
+                n = reader.getNumberOfPages();
+                for (int page = 0; page < n; ) {
+                    copy.addPage(copy.getImportedPage(reader, ++page));
+                }
+                copy.freeReader(reader);
+                reader.close();
+            }
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outputStream;
+    }
+
+    /**
+     * 处理字符串空值
+     * @param object Object字符串
+     * @return 字符串
+     */
+    private static String handleNullMessage(Object object) {
+        if (ObjectUtil.isNull(object)) {
+            return "";
+        }
+        return object.toString();
+    }
 }

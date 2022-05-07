@@ -1,0 +1,63 @@
+{
+  "groups": [
+    {
+      "name": "spring.redis",
+      "type": "com.soft.web.defines.RedisProperties",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.redis.conn-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.database",
+      "type": "java.lang.Integer",
+      "description": "spring.redis.database=0 spring.redis.host=127.0.0.1 spring.redis.port=6379 spring.redis.ssl=false spring.redis.password= spring.redis.connTimeout=5000ms spring.redis.maxActive=500 spring.redis.maxIdle=10 spring.redis.minIdle=0 spring.redis.maxWait=5000ms",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.max-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.max-wait",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.password",
+      "type": "java.lang.String",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    },
+    {
+      "name": "spring.redis.ssl",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.soft.web.defines.RedisProperties"
+    }
+  ],
+  "hints": []
+}
