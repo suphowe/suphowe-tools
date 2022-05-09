@@ -1,11 +1,14 @@
 package com.soft.method.excel;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
 import com.soft.method.excel.innerclass.ExcelListener;
-import com.soft.method.excel.innerclass.MultipleSheelPropety;
+import com.soft.method.excel.innerclass.MultipleSheetProperty;
+import com.soft.method.excel.innerclass.MergeStrategy;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -38,7 +41,7 @@ public class EasyExcelUtil {
      * @param filePath 文件绝对路径
      * @return 读取数据
      */
-    public static List<Object> readLessthan1000Rows(String filePath){
+    public static List<Object> readLessThan1000Rows(String filePath){
         return readLessThan1000RowBySheet(filePath, 1, 0);
     }
 
@@ -103,7 +106,7 @@ public class EasyExcelUtil {
             if (cellEmpty){
                 return emptyCellSet(excelListener);
             }
-            return excelListener.getDatas();
+            return excelListener.getData();
         } catch (FileNotFoundException e) {
             logger.error("找不到文件或文件路径错误, 文件：{}", filePath);
         }finally {
@@ -217,10 +220,10 @@ public class EasyExcelUtil {
     /**
      * 生成多Sheet的excle
      * @param filePath 文件绝对路径
-     * @param multipleSheelPropetys 数据集
+     * @param multipleSheetProperties 数据集
      */
-    public static void writeWithMultipleSheel(String filePath,List<MultipleSheelPropety> multipleSheelPropetys){
-        if(CollectionUtils.isEmpty(multipleSheelPropetys)){
+    public static void writeWithMultipleSheet(String filePath,List<MultipleSheetProperty> multipleSheetProperties){
+        if(CollectionUtils.isEmpty(multipleSheetProperties)){
             return;
         }
         OutputStream outputStream = null;
@@ -228,12 +231,12 @@ public class EasyExcelUtil {
         try {
             outputStream = new FileOutputStream(filePath);
             writer = EasyExcelFactory.getWriter(outputStream);
-            for (MultipleSheelPropety multipleSheelPropety : multipleSheelPropetys) {
-                Sheet sheet = multipleSheelPropety.getSheet() != null ? multipleSheelPropety.getSheet() : DEFAULT_SHEET;
-                if(!CollectionUtils.isEmpty(multipleSheelPropety.getData())){
-                    sheet.setClazz(multipleSheelPropety.getData().get(0).getClass());
+            for (MultipleSheetProperty multipleSheetProperty : multipleSheetProperties) {
+                Sheet sheet = multipleSheetProperty.getSheet() != null ? multipleSheetProperty.getSheet() : DEFAULT_SHEET;
+                if(!CollectionUtils.isEmpty(multipleSheetProperty.getData())){
+                    sheet.setClazz(multipleSheetProperty.getData().get(0).getClass());
                 }
-                writer.write(multipleSheelPropety.getData(), sheet);
+                writer.write(multipleSheetProperty.getData(), sheet);
             }
         } catch (FileNotFoundException e) {
             logger.error("找不到文件或文件路径错误, 文件：{}", filePath);
@@ -249,8 +252,23 @@ public class EasyExcelUtil {
                 logger.error("excel文件导出失败, 失败原因：", e);
             }
         }
-
     }
+
+    /**
+     * 合并单元格写文件
+     * @param filePath 导出文件
+     * @param head 表头
+     * @param sheetName sheet名称
+     * @param cellRangeAddress 自定义需要合并单元格 CellRangeAddress(开始行,结束行,开始列,结束列)
+     * @param data 主体数据
+     */
+    public static void writeMergeCell(String filePath, List<List<String>> head, String sheetName,
+                                      List<CellRangeAddress> cellRangeAddress, List<List<Object>> data) {
+        EasyExcel.write(filePath).head(head).sheet(sheetName)
+                .registerWriteHandler(new MergeStrategy(cellRangeAddress))
+                .doWrite(data);
+    }
+
 
     /**
      * 处理空值
@@ -260,14 +278,14 @@ public class EasyExcelUtil {
     private static List<Object> emptyCellSet(ExcelListener excelListener) {
         List<Object> result = new ArrayList<>();
 
-        List<Object> datas = excelListener.getDatas();
+        List<Object> data = excelListener.getData();
         //获取表头的size
-        int size = ((List<String>) datas.get(0)).size();
+        int size = ((List<String>) data.get(0)).size();
         //解析内容
-        for (Object data : datas) {
+        for (Object object : data) {
             //声明一个数组, 是excel列, 要保持列数
             Object[] cells = new Object[size];
-            List<String> strings = (List<String>) data;
+            List<String> strings = (List<String>) object;
             if (strings.size() != size) {
                 System.arraycopy(strings.toArray(), 0, cells, 0, strings.toArray().length);
             } else {

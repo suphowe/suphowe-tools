@@ -9,7 +9,7 @@ import java.util.List;
  * 数据集模型
  * @author suphowe
  */
-public class MultipleSheelPropety {
+public class MultipleSheetProperty {
 
     private List<? extends BaseRowModel> data;
 

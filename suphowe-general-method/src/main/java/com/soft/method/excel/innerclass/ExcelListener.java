@@ -12,16 +12,16 @@ import java.util.List;
  * 整个excel解析结束会执行doAfterAllAnalysed()方法
  * @author suphowe
  */
-public class ExcelListener extends AnalysisEventListener {
+public class ExcelListener extends AnalysisEventListener<Object> {
 
-    private List<Object> datas = new ArrayList<>();
+    private List<Object> data = new ArrayList<>();
 
-    public List<Object> getDatas() {
-        return datas;
+    public List<Object> getData() {
+        return data;
     }
 
-    public void setDatas(List<Object> datas) {
-        this.datas = datas;
+    public void setData(List<Object> data) {
+        this.data = data;
     }
 
     /**
@@ -33,7 +33,7 @@ public class ExcelListener extends AnalysisEventListener {
         //当前行
         // context.getCurrentRowNum()
         if (object != null) {
-            datas.add(object);
+            data.add(object);
         }
     }
 

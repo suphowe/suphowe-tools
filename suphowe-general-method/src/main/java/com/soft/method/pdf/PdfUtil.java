@@ -453,32 +453,6 @@ public class PdfUtil {
     }
 
     /**
-     * 合并PDF
-     * @param readers pdf列表
-     * @param outputStream 输出流
-     */
-    public static ByteArrayOutputStream mergerPdf (List<PdfReader> readers, ByteArrayOutputStream outputStream) {
-        Document document = new Document();
-        try {
-            PdfCopy copy = new PdfCopy(document, outputStream);
-            document.open();
-            int n;
-            for (PdfReader reader : readers) {
-                n = reader.getNumberOfPages();
-                for (int page = 0; page < n; ) {
-                    copy.addPage(copy.getImportedPage(reader, ++page));
-                }
-                copy.freeReader(reader);
-                reader.close();
-            }
-            document.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return outputStream;
-    }
-
-    /**
      * 处理字符串空值
      * @param object Object字符串
      * @return 字符串
