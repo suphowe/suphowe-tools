@@ -72,6 +72,8 @@ public class SysExceptionAspect {
      */
     @AfterReturning(pointcut = "log()",returning = "object")
     public void doAfterReturn(Object object){
-        logger.info("response={}",object.toString());
+        if (object != null) {
+            logger.info("response={}",object.toString());
+        }
     }
 }

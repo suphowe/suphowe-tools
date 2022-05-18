@@ -22,6 +22,6 @@ public class BaseQuartz {
 
     @Scheduled(cron = "${crontab.test}")
     public void task() {
-        aopService.methodOne("定时任务-->");
+        //aopService.methodOne("定时任务-->");
     }
 }

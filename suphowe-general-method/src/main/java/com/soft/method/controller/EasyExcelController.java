@@ -56,4 +56,37 @@ public class EasyExcelController {
         result.put("result", list);
         return new Gson().toJson(result);
     }
+
+    @RequestMapping(value = "/writeTemplateExcel", method = RequestMethod.GET)
+    public void writeTemplateExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HashMap<String, Object> other = new HashMap(4);
+        other.put("unitName", "CAF");
+        other.put("date", "2022-05-17");
+        other.put("writer", "作者");
+
+        List<HashMap<String, Object>> data = new ArrayList<>();
+        HashMap<String, Object> data1 = new HashMap(16);
+        data1.put("id", 1);
+        data1.put("name", "howe");
+        data1.put("sex", "M");
+        data1.put("tel", "1336829xxx");
+        data1.put("addr", "CQ");
+        data1.put("age", 30);
+        data1.put("height", 180);
+        data1.put("weight", 70);
+        data.add(data1);
+
+        HashMap<String, Object> data2 = new HashMap(16);
+        data2.put("id", 2);
+        data2.put("name", "howe");
+        data2.put("sex", "M");
+        data2.put("tel", "1336829xxx");
+        data2.put("addr", "CQ");
+        data2.put("age", 30);
+        data2.put("height", 180);
+        data2.put("weight", 70);
+        data.add(data2);
+
+        EasyExcelUtil.writeTemplateExcel(response, "templates/excel/Excel填充模板.xlsx", data, other);
+    }
 }

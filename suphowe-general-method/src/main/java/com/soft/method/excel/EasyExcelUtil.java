@@ -5,18 +5,25 @@ import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.excel.write.metadata.fill.FillConfig;
 import com.soft.method.excel.innerclass.ExcelListener;
 import com.soft.method.excel.innerclass.MultipleSheetProperty;
 import com.soft.method.excel.innerclass.MergeStrategy;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -269,6 +276,48 @@ public class EasyExcelUtil {
                 .doWrite(data);
     }
 
+    /**
+     * 模板数据写入
+     * @param response 返回
+     * @param excelTemplate excel模板
+     * @param listData list数据
+     * @param data 数据
+     */
+    public static void writeTemplateExcel(HttpServletResponse response, String excelTemplate, Object listData, Object data){
+        /*
+         * application/vnd.ms-excel;charset=UTF-8 会出现找不到转换器的错误 no converter
+         * 需要实现WebMvcConfigurer,自定义转换器
+         * 实现在 MyWebMvcConfigurer.java文件中
+         */
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        // 在代理服务器端防止缓冲
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Content-disposition", "attachment;filename=" + new Date() + ".xlsx");
+
+        //获取模板
+        ClassPathResource classPathResource = new ClassPathResource(excelTemplate);
+        try (InputStream inputStream = classPathResource.getInputStream();
+             OutputStream outputStream = response.getOutputStream()) {
+            //设置输出流和模板信息
+            ExcelWriter excelWriter = EasyExcel.write(outputStream).withTemplate(inputStream).build();
+            WriteSheet writeSheet = EasyExcel.writerSheet().build();
+            if (data != null) {
+                excelWriter.fill(data, writeSheet);
+            }
+            //开启自动换行,自动换行表示每次写入一条list数据是都会重新生成一行空行,此选项默认是关闭的,需要提前设置为true
+            if (listData != null) {
+                FillConfig fillConfig = FillConfig.builder().forceNewRow(Boolean.TRUE).build();
+                excelWriter.fill(listData, fillConfig, writeSheet);
+            }
+            excelWriter.finish();
+            outputStream.flush();
+            response.getOutputStream().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 处理空值

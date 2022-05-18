@@ -4,7 +4,6 @@ import com.soft.method.beans.Result;
 import com.soft.method.exception.ExceptionEnum;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * 返回结果
