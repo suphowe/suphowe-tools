@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soft.method.dao.SigmaMapper">
+
+    <insert id="insertSigma">
+        INSERT INTO sigma(begin_date,end_date,hours,millisecond)
+        VALUES(#{beginDate}, #{endDate} , #{hours}, #{millisecond})
+    </insert>
+
+    <delete id="deleteSigmaTable">
+        delete from sigma
+    </delete>
+</mapper>
